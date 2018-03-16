@@ -1,18 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body {
     margin: 0;
 }
 
 .nav-bar {
-    min-height: 3em;
-    padding-top: 1em;
+    // min-height: 3em;
+    // padding-top: 1em;
     box-sizing: border-box;
 }
 
 .bg-light {
     background: #cccccc;
 }
+
+.container-spacer {
+  flex: 1 1 auto;
+}
+
 
 .nav-item {
     margin: 0em 1em;
