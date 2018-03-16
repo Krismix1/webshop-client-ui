@@ -19,6 +19,14 @@ body {
     color: black;
 }
 
+.search {
+    display: inline-block;
+}
+
+.search-icon {
+    display: inline-block;
+}
+
 // Animating link underlining
 // From http://tobiasahlin.com/blog/css-trick-animating-link-underlines/
 
@@ -31,7 +39,7 @@ For simplicitiy’s sake, we’ll also make sure the link doesn’t change color
 Here we’re applying the effect to all link elements inside h2s:
 
 */
-.nav-bar .nav-item {
+.nav-bar .nav-link {
     position: relative;
     text-decoration: none;
 }
@@ -43,7 +51,7 @@ As a fallback, we hide it with visibility: hidden for browsers that don’t supp
 */
 
 
-.nav-bar .nav-item::before {
+.nav-bar .nav-link::before {
   content: "";
   position: absolute;
   width: 100%;
@@ -64,7 +72,7 @@ with a duration of 0.3 seconds. For the animation to appear, now we just need to
 the element visible again on hover, and set its X scale back to 1:
 */
 
-.nav-bar .nav-item:hover::before {
+.nav-bar .nav-link:hover::before {
   visibility: visible;
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
