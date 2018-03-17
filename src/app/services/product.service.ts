@@ -8,18 +8,20 @@ export class ProductService {
     {
       name: "Prod 1",
       price: 150,
-      image: "N/A"
+      image: "N/A",
+      thumbnail: "N/A"
     },
     {
       name: "Prod 2",
       price: 99,
-      image: "N/A"
+      image: "N/A",
+      thumbnail: "N/A"
     }
   ];
 
   constructor() { }
 
-  fetchProducts():Product[]{
+  fetchProducts(): Product[] {
     return this.products;
   }
 }

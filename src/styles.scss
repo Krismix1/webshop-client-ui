@@ -1,41 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,700');
 
 body {
-    margin: 0;
+  margin: 0;
+  font-family: 'Raleway', 'Arial';
+}
+
+.container {
+  margin: 0.5em 1.5em 1.5em;
+  padding: 0.7em;
 }
 
 .nav-bar {
-    // min-height: 3em;
-    // padding-top: 1em;
-    box-sizing: border-box;
+  // min-height: 3em;
+  // padding-top: 1em;
+  box-sizing: border-box;
 }
 
 .bg-light {
-    background: #cccccc;
+  background: #cccccc;
 }
 
 .container-spacer {
   flex: 1 1 auto;
 }
 
-
 .nav-item {
-    margin: 0em 1em;
-    color: black;
+  margin: 0 1em;
+  color: black;
 }
 
 .search {
-    display: inline-block;
+  display: inline-block;
 }
 
 .search-icon {
-    display: inline-block;
+  display: inline-block;
 }
-
 // Animating link underlining
 // From http://tobiasahlin.com/blog/css-trick-animating-link-underlines/
-
 /*
 Creating this effect is surprisingly easy, doesn’t require any additional DOM elements to be added through HTML,
 and falls back nicely for browsers that don’t support CSS animations (it will just show up as a regular underline).
@@ -46,16 +50,14 @@ Here we’re applying the effect to all link elements inside h2s:
 
 */
 .nav-bar .nav-link {
-    position: relative;
-    text-decoration: none;
+  position: relative;
+  text-decoration: none;
 }
-
 /*
 Next, we want to add the border, and hide it through a transformation.
 We do this by inserting it with :before, and setting its X scale to 0.
 As a fallback, we hide it with visibility: hidden for browsers that don’t support CSS animations.
 */
-
 
 .nav-bar .nav-link::before {
   content: "";
@@ -71,7 +73,6 @@ As a fallback, we hide it with visibility: hidden for browsers that don’t supp
   -webkit-transition: all 0.3s ease-in-out 0s;
   transition: all 0.3s ease-in-out 0s;
 }
-
 /*
 At the very bottom we tell the element to animate all changes applied to it,
 with a duration of 0.3 seconds. For the animation to appear, now we just need to make

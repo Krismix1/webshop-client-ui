@@ -1,10 +1,7 @@
 
 export class Product {
-  private name: string;
-  private price: number;
-  private image: string;
 
-  set name(name: string): void {
+  set name(name: string) {
     this.name = name;
   }
 
@@ -12,7 +9,7 @@ export class Product {
     return this.name;
   }
 
-  set price(price: number): void {
+  set price(price: number) {
     this.price = price;
   }
 
@@ -20,11 +17,23 @@ export class Product {
     return this.price;
   }
 
-  set image(image: string): void {
-    this.image = image;
+  // Set the URL for the image of the product
+  set image(url: string) {
+    this.image = url;
   }
 
+  // Return the URL of the image of the product
   get image(): string {
     return this.image;
+  }
+
+  // Set the URL for the thumbnail image of the product
+  set thumbnail(url) {
+    this.thumbnail = url;
+  }
+
+  // Return the URL of the thumbnail image of the product
+  get thumbnail(): string {
+    return this.thumbnail;
   }
 }
