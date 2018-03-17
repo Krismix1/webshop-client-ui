@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
+
+.product-card * {
+  font-family: "Open Sans", sans-serif;
+}
+
+.product-card {
+  border: 1px solid #ccc;
+  max-width: 300px;
+  background: #eee;
+  box-shadow: 0 13px 21px -3px rgba(0, 0, 0, 0.3);
+}
+
+.product-card-thumbnail {
+  width: 200px;
+  margin: 0 auto;
+  padding: 3px;
+}
+
+.product-card-thumbnail img {
+  width: 200px;
+  height: 200px;
+}
+
+.product-card-details {
+  background: white;
+  margin: 0;
+  padding: 10px 4px 4px;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+}
+
+.current-price::before {
+  content: "$";
+}
+
+.product-card-name {
+  padding: 0;
+  margin: 0;
+}
+
+.product-card-description {
+  color: #999;
+}
+
+.price {
+  color: #48cfad;
+  font-size: 22px;
+  font-weight: 600;
+}

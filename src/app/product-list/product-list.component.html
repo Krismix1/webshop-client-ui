@@ -1,3 +1,10 @@
-<mat-list *ngFor="let product of getProducts()">
-  <mat-list-item>{{product.name}}</mat-list-item>
-</mat-list>
+<!-- <mat-list>
+  <mat-list-item *ngFor="let product of getProducts()">
+    <app-product-card [product]="product">Product item...</app-product-card>
+  </mat-list-item>
+</mat-list> -->
+<div>
+  <div class="product-card-wrapper" *ngFor="let product of getProducts()">
+    <app-product-card [product]="product">Product item...</app-product-card>
+  </div>
+</div>

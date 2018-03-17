@@ -9,13 +9,13 @@ export class ProductService {
       name: "Prod 1",
       price: 150,
       image: "N/A",
-      thumbnail: "N/A"
+      thumbnail: "http://via.placeholder.com/300"
     },
     {
       name: "Prod 2",
       price: 99,
       image: "N/A",
-      thumbnail: "N/A"
+      thumbnail: "https://lexiconcss.wedeploy.io/images/thumbnail_placeholder.gif"
     }
   ];
 

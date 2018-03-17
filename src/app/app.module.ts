@@ -12,6 +12,7 @@ import { SearchComponent } from './search/search.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductService } from './services/product.service';
+import { ProductCardComponent } from './product/product-card/product-card.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ProductService } from './services/product.service';
     NavbarComponent,
     SearchComponent,
     ProductDetailsComponent,
-    ProductListComponent
+    ProductListComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
