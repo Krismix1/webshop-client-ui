@@ -9,8 +9,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SearchComponent } from './search/search.component';
-import { ProductDetailsComponent } from './product-details/product-details.component';
-import { ProductListComponent } from './product-list/product-list.component';
+import { ProductDetailsComponent } from './product/product-details/product-details.component';
+import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductService } from './services/product.service';
 import { ProductCardComponent } from './product/product-card/product-card.component';
 
