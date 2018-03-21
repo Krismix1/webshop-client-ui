@@ -12,7 +12,10 @@ import { SearchComponent } from './search/search.component';
 import { ProductDetailsComponent } from './product/product-details/product-details.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductService } from './services/product.service';
+import { CategoryService } from './services/category.service';
 import { ProductCardComponent } from './product/product-card/product-card.component';
+import { CategoryListItemComponent } from './category/category-list-item/category-list-item.component';
+import { CategoryListComponent } from './category/category-list/category-list.component';
 
 
 @NgModule({
@@ -23,7 +26,9 @@ import { ProductCardComponent } from './product/product-card/product-card.compon
     SearchComponent,
     ProductDetailsComponent,
     ProductListComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    CategoryListItemComponent,
+    CategoryListComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,7 @@ import { ProductCardComponent } from './product/product-card/product-card.compon
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [ProductService],
+  providers: [ProductService, CategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
