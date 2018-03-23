@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryService } from '../../services/category.service';
-import { Category } from '../../entities/category';
+import { Category } from './../../entities/category';
+import { CategoryActions } from './../category.actions';
+import { IAppState } from './../../store/store';
+import { NgRedux } from '@angular-redux/store';
 
 @Component({
   selector: 'app-category-list',
@@ -9,12 +11,29 @@ import { Category } from '../../entities/category';
 })
 export class CategoryListComponent implements OnInit {
 
-  constructor(private categoryService: CategoryService) { }
+  categories: Category[];
+
+  constructor(private categoryActions: CategoryActions, private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {
+    this.ngRedux.select(state => state.category)
+      .subscribe(categoriesState => { this.setCategories(categoriesState.categories); });
+
+    // fill initial data only during development time
+    this.addCategory("Category A");
+    this.addCategory("Category B");
   }
 
-  get categories(): any {
-    return this.categoryService.fetchCategories();
+  private addCategory(name: string) {
+    let category = { name: name };
+    this.categoryActions.addCategory(category);
+  }
+
+  getCategories(): Category[] {
+    return this.categories;
+  }
+
+  private setCategories(data) {
+    this.categories = data;
   }
 }
