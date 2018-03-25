@@ -1,7 +1,4 @@
-<p>
-  category-list works!
-</p>
-<mat-list *ngFor="let category of categories">
-  <mat-list-item>{{category.name | uppercase}}
-  </mat-list-item>
-</mat-list>
+<div class="category-list">
+  <app-category-list-item *ngFor="let category of categories" [category]="category">
+  </app-category-list-item>
+</div>
