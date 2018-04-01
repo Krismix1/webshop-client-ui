@@ -18,7 +18,11 @@ export class CategoryListComponent implements OnInit {
   ngOnInit() {
     this.ngRedux.select(state => state.category)
       .subscribe(categoriesState => { this.categories = categoriesState.categories; });
-    this.categoryActions.addCategory({name: "Category I"});
-    this.categoryActions.addCategory({name: "Category II"});
+    this.categoryActions.addCategory({ name: "Category I" });
+    this.categoryActions.addCategory({ name: "Category II" });
+  }
+
+  onCategoryClicked(category: Category) {
+    this.categoryActions.setProductCategory(category);
   }
 }

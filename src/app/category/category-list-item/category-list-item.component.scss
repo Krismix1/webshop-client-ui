@@ -1,3 +1,5 @@
+$backgroundColor: #48cfad;
+
 .category {
   text-align: center;
   padding: 5px;
@@ -6,6 +8,11 @@
 .category:hover {
   cursor: pointer;
   /*background: #ddd;*/
-  background: #48cfad;
+  background: $backgroundColor;
   color: #fff;
+}
+
+.active {
+  background: $backgroundColor * 1.15;
+  font-style: italic;
 }

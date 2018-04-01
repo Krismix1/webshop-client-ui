@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../services/product.service';
+import { NgRedux } from '@angular-redux/store';
+import { IAppState } from './../../store/store';
+import { Product } from './../../entities/product';
 
 @Component({
   selector: 'app-product-list',
@@ -8,12 +10,12 @@ import { ProductService } from '../../services/product.service';
 })
 export class ProductListComponent implements OnInit {
 
-  constructor(private productService: ProductService) { }
+  products: Product[];
+
+  constructor(private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {
-  }
-
-  getProducts() {
-    return this.productService.fetchProducts();
+    this.ngRedux.select(state => state.product)
+      .subscribe(categoryState => this.products = categoryState.visibleProducts);
   }
 }

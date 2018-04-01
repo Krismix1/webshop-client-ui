@@ -9,10 +9,18 @@ export class CategoryActions {
   constructor(private ngRedux: NgRedux<IAppState>) { }
 
   static ADD_CATEGORY: string = 'ADD_CATEGORY';
+  static SET_PRODUCT_CATEGORY: string = 'SET_PRODUCT_CATEGORY';
 
   addCategory(category: Category): void {
     this.ngRedux.dispatch({
       type: CategoryActions.ADD_CATEGORY,
+      payload: category
+    });
+  }
+
+  setProductCategory(category: Category): void {
+    this.ngRedux.dispatch({
+      type: CategoryActions.SET_PRODUCT_CATEGORY,
       payload: category
     });
   }

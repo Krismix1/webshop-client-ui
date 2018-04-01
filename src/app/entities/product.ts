@@ -1,3 +1,4 @@
+import { Category } from './category';
 
 export class Product {
 
@@ -28,12 +29,20 @@ export class Product {
   }
 
   // Set the URL for the thumbnail image of the product
-  set thumbnail(url) {
+  set thumbnail(url: string) {
     this.thumbnail = url;
   }
 
   // Return the URL of the thumbnail image of the product
   get thumbnail(): string {
     return this.thumbnail;
+  }
+
+  set category(category: Category) {
+    this.category = category;
+  }
+
+  get category(): Category {
+    return this.category;
   }
 }

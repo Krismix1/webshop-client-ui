@@ -20,6 +20,7 @@ import { CategoryListItemComponent } from './category/category-list-item/categor
 import { CategoryListComponent } from './category/category-list/category-list.component';
 import { CategoryActions } from './category/category.actions';
 import { rootReducer, IAppState } from './store/store';
+import { ProductActions } from './product/product.actions';
 
 @NgModule({
   declarations: [
@@ -41,17 +42,26 @@ import { rootReducer, IAppState } from './store/store';
     NgReduxModule,
     NgReduxRouterModule.forRoot()
   ],
-  providers: [ProductService, CategoryService, CategoryActions],
+  providers: [ProductService, CategoryService, CategoryActions, ProductActions],
   bootstrap: [AppComponent]
 })
 export class AppModule {
 
   constructor(private ngRedux: NgRedux<IAppState>,
-    private devTool: DevToolsExtension,
+    private devTools: DevToolsExtension,
     private ngReduxRouter: NgReduxRouter, ) {
 
+    let enhancers = [];
+    // ... add whatever other enhancers are needed.
+
+    // You probably only want to expose this tool in devMode.
+    const __DEVMODE__ = true; // FIXME: Can't find where __DEVMODE__ is declared..., this is just a work around
+    if (__DEVMODE__ && devTools.isEnabled()) {
+      enhancers = [...enhancers, devTools.enhancer()];
+    }
+
     this.ngRedux.configureStore(
-      rootReducer, {});
+      rootReducer, {}, [], enhancers);
 
     ngReduxRouter.initialize(/* args */);
   }
