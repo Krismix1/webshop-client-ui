@@ -45,4 +45,12 @@ export class Product {
   get category(): Category {
     return this.category;
   }
+
+  set shortDescription(description: string) {
+    this.shortDescription = description;
+  }
+
+  get shortDescription(): string {
+    return this.shortDescription;
+  }
 }

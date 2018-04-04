@@ -1,29 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../entities/product';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class ProductService {
 
-  private products: Product[] = [
-    {
-      name: "Prod 1",
-      price: 150,
-      image: "N/A",
-      thumbnail: "http://via.placeholder.com/300",
-      category: { name: "Category II" }
-    },
-    {
-      name: "Prod 2",
-      price: 99,
-      image: "N/A",
-      thumbnail: "https://lexiconcss.wedeploy.io/images/thumbnail_placeholder.gif",
-      category: { name: "Category I" }
-    }
-  ];
+  private _baseUrl: string = "http://localhost:8080/api/products/"
+  constructor(private httpClient: HttpClient) { }
 
-  constructor() { }
-
-  fetchProducts(): Product[] {
-    return this.products;
+  fetchProducts() {
+    return this.httpClient.get<Product[]>(this._baseUrl);
   }
 }

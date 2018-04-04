@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { NgRedux, NgReduxModule, DevToolsExtension } from '@angular-redux/store';
 import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -40,7 +41,8 @@ import { ProductActions } from './product/product.actions';
     BrowserAnimationsModule,
     MaterialModule,
     NgReduxModule,
-    NgReduxRouterModule.forRoot()
+    NgReduxRouterModule.forRoot(),
+    HttpClientModule
   ],
   providers: [ProductService, CategoryService, CategoryActions, ProductActions],
   bootstrap: [AppComponent]
