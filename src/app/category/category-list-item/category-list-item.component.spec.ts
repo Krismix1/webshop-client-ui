@@ -8,14 +8,17 @@ describe('CategoryListItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CategoryListItemComponent ]
+      declarations: [CategoryListItemComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CategoryListItemComponent);
     component = fixture.componentInstance;
+
+    expectedCategory = { name: "test_category" };
+    component.category = expectedCategory;
     fixture.detectChanges();
   });
 

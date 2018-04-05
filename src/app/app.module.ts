@@ -5,6 +5,7 @@ import { MaterialModule } from './material.module';
 import { NgRedux, NgReduxModule, DevToolsExtension } from '@angular-redux/store';
 import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
 import { HttpClientModule } from '@angular/common/http';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -22,6 +23,7 @@ import { CategoryListComponent } from './category/category-list/category-list.co
 import { CategoryActions } from './category/category.actions';
 import { rootReducer, IAppState } from './store/store';
 import { ProductActions } from './product/product.actions';
+import { CartActions } from './cart/cart.actions';
 
 @NgModule({
   declarations: [
@@ -42,9 +44,10 @@ import { ProductActions } from './product/product.actions';
     MaterialModule,
     NgReduxModule,
     NgReduxRouterModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    AngularFontAwesomeModule
   ],
-  providers: [ProductService, CategoryService, CategoryActions, ProductActions],
+  providers: [ProductService, CategoryService, CategoryActions, ProductActions, CartActions],
   bootstrap: [AppComponent]
 })
 export class AppModule {

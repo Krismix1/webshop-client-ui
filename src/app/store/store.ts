@@ -2,8 +2,10 @@ import { routerReducer } from '@angular-redux/router';
 import { combineReducers } from 'redux';
 import { categoryReducer } from './../reducers/category.reducer';
 import { productReducer } from './../reducers/product.reducer';
+import { cartReducer } from './../reducers/cart.reducer';
 import { Category } from './../entities/category';
 import { Product } from './../entities/product';
+import { CartItem } from './../entities/cart-item';
 
 export class CategoryState {
   categories: Category[];
@@ -15,13 +17,19 @@ export class ProductState {
   visibleProducts: Product[];
 }
 
+export class CartState {
+  items: CartItem[];
+}
+
 export class IAppState {
   category?: CategoryState;
   product?: ProductState;
+  cart?: CartState;
 }
 
 export const rootReducer = combineReducers<IAppState>({
   category: categoryReducer,
   product: productReducer,
+  cart: cartReducer,
   router: routerReducer
 });

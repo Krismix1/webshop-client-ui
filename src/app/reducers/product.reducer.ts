@@ -11,7 +11,7 @@ export function productReducer(state: ProductState = INITIAL_STATE, action: any)
       let selectedCategory = action.payload.name;
       // Filter the products by the category
       let visProducts = state.products.filter(product => {
-        return product.type.category.name == selectedCategory;
+        return product.type.category.name === selectedCategory;
       });
       return tassign(state, { visibleProducts: visProducts });
     case ProductActions.ADD_PRODUCT:

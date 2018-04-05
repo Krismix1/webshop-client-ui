@@ -6,15 +6,24 @@ import * as types from './../category/category.actions';
 describe('category reducers', () => {
 
   it('should return the initial state', () => {
-    expect(categoryReducer(undefined, {})).toEqual({ categories: [] });
+    expect(categoryReducer(undefined, {})).toEqual({
+      categories: [],
+      currentCategory: undefined
+    });
   });
 
   it('Should add category', () => {
-    let stateBefore = { categories: [] };
+    let stateBefore = {
+      categories: [],
+      currentCategory: undefined
+    };
     let category = {
       name: "unit_test_category"
     };
-    let stateAfter = { categories: [category] };
+    let stateAfter = {
+      categories: [category],
+      currentCategory: undefined
+    };
     deepFreeze(stateBefore);
     expect(categoryReducer(stateBefore, {
       type: types.CategoryActions.ADD_CATEGORY,
@@ -23,7 +32,10 @@ describe('category reducers', () => {
   });
 
   it('Should add 2 categories in row', () => {
-    let stateBefore = { categories: [] };
+    let stateBefore = {
+      categories: [],
+      currentCategory: undefined
+    };
     let cat1 = { name: "unit_test_category_1" };
     let cat2 = { name: "unit_test_category_2" };
     deepFreeze(stateBefore);
@@ -34,7 +46,8 @@ describe('category reducers', () => {
     });
 
     expect(stateAfter).toEqual({
-      categories: [cat1]
+      categories: [cat1],
+      currentCategory: undefined
     });
 
     stateBefore = stateAfter;
@@ -44,7 +57,8 @@ describe('category reducers', () => {
       type: types.CategoryActions.ADD_CATEGORY,
       payload: cat2
     })).toEqual({
-      categories: [cat1, cat2]
+      categories: [cat1, cat2],
+      currentCategory: undefined
     });
   });
 });
