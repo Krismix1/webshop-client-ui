@@ -21,7 +21,7 @@ export class CategoryListComponent implements OnInit {
       .subscribe(categoriesState => { this.categories = categoriesState.categories; });
 
     this.categoryService.fetchCategories()
-      .subscribe(data => data.forEach(category => { this.categoryActions.addCategory(category); }));
+      .subscribe(categories => this.categoryActions.setCategories(categories));
   }
 
   onCategoryClicked(category: Category) {

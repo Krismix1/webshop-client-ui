@@ -24,6 +24,8 @@ import { CategoryActions } from './category/category.actions';
 import { rootReducer, IAppState } from './store/store';
 import { ProductActions } from './product/product.actions';
 import { CartActions } from './cart/cart.actions';
+import { CartDashbordComponent } from './cart/cart-dashbord/cart-dashbord.component';
+import { CartDashbordItemComponent } from './cart/cart-dashbord-item/cart-dashbord-item.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { CartActions } from './cart/cart.actions';
     ProductListComponent,
     ProductCardComponent,
     CategoryListItemComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    CartDashbordComponent,
+    CartDashbordItemComponent
   ],
   imports: [
     BrowserModule,

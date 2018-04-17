@@ -14,6 +14,8 @@ export function productReducer(state: ProductState = INITIAL_STATE, action: any)
         return product.type.category.name === selectedCategory;
       });
       return tassign(state, { visibleProducts: visProducts });
+    case ProductActions.SET_PRODUCTS:
+      return tassign(state, { products: action.payload });
     case ProductActions.ADD_PRODUCT:
       return tassign(state, { products: [...state.products, action.payload] })
     default:

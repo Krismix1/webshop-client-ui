@@ -1,0 +1,9 @@
+<div *ngIf="items.length > 0">
+  <div class="" *ngFor="let item of items">
+    <app-cart-dashbord-item [item]="item">
+    </app-cart-dashbord-item>
+  </div>
+</div>
+<div *ngIf="items.length == 0" class="">
+  Shopping cart is empty :(
+</div>

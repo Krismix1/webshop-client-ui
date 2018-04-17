@@ -1,0 +1,14 @@
+<div class="item">
+  <div class="item-name">
+    {{ item.product.name }}
+  </div>
+  <div class="operation" (click)="removeItem()">
+    <span>-</span>
+  </div>
+  <div class="item-quantity">
+    {{ item.quantity }}
+  </div>
+  <div class="operation" (click)="addItem()">
+    <span>+</span>
+  </div>
+</div>

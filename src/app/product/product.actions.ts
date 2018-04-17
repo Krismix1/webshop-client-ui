@@ -8,11 +8,19 @@ export class ProductActions {
   constructor(private ngRedux: NgRedux<IAppState>) { }
 
   static ADD_PRODUCT: string = "ADD_PRODUCT";
+  static SET_PRODUCTS: string = "SET_PRODUCTS";
 
   addProduct(product: Product) {
     this.ngRedux.dispatch({
       type: ProductActions.ADD_PRODUCT,
       payload: product
+    });
+  }
+
+  setProducts(products: Product[]) {
+    this.ngRedux.dispatch({
+      type: ProductActions.SET_PRODUCTS,
+      payload: products
     });
   }
 }

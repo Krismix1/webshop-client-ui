@@ -6,6 +6,7 @@ import { Product } from './../entities/product';
 @Injectable()
 export class CartActions {
   static PUT_PRODUCT: string = "PUT_PRODUCT";
+  static SUBTRACT_PRODUCT: string = "SUBTRACT_PRODUCT";
 
   constructor(private ngRedux: NgRedux<IAppState>) { }
 
@@ -13,6 +14,13 @@ export class CartActions {
     this.ngRedux.dispatch({
       type: CartActions.PUT_PRODUCT,
       payload: product
+    });
+  }
+  
+  subtractProduct(product: Product) {
+    this.ngRedux.dispatch({
+      type: CartActions.SUBTRACT_PRODUCT,
+      payload: product.id
     });
   }
 }

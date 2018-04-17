@@ -8,6 +8,8 @@ export function categoryReducer(state: CategoryState = INITIAL_STATE, action: an
   switch (action.type) {
     case CategoryActions.ADD_CATEGORY:
       return tassign(state, { categories: [...state.categories, action.payload] });
+    case CategoryActions.SET_CATEGORIES:
+      return tassign(state, { categories: action.payload });
     case CategoryActions.SET_PRODUCT_CATEGORY:
       return tassign(state, { currentCategory: action.payload });
     default:

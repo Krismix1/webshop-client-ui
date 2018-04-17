@@ -20,6 +20,6 @@ export class ProductListComponent implements OnInit {
     this.ngRedux.select(state => state.product)
       .subscribe(categoryState => this.products = categoryState.visibleProducts);
     this.productService.fetchProducts()
-      .subscribe(products => products.forEach(product => this.productActions.addProduct(product)));
+      .subscribe(products => this.productActions.setProducts(products));
   }
 }
