@@ -1,0 +1,43 @@
+.cart-totals-key {
+  font-weight: 600;
+  display: inline;
+  margin: 5px;
+}
+
+.cart-totals-value {
+  display: inline;
+  margin: 5px;
+}
+
+.subtotal {
+  border-bottom: 1px solid #ccc;
+}
+
+.checkout {
+  margin: 5px;
+}
+
+.checkout-btn {
+  border: none;
+  padding: 4px 6px;
+  width: 60%;
+}
+
+.checkout-btn:hover {
+  cursor: pointer;
+  background: #bbb;
+}
+
+.cart {
+  display: grid;
+  grid-template-columns: 80% 20%;
+}
+
+.cart-items {}
+
+.cart-totals {
+  margin: 5px;
+  padding: 5px;
+  box-sizing: border-box;
+  border-left: 1px solid #ccc;
+}

@@ -41,6 +41,16 @@ body {
 .search-icon {
   display: inline-block;
 }
+
+.btn {
+  border: none;
+  cursor: pointer;
+  background: #ccc;
+}
+
+.btn:hover {
+  background: #bbb;
+}
 // Animating link underlining
 // From http://tobiasahlin.com/blog/css-trick-animating-link-underlines/
 /*
@@ -52,7 +62,6 @@ For simplicitiy’s sake, we’ll also make sure the link doesn’t change color
 Here we’re applying the effect to all link elements inside h2s:
 
 */
-
 .nav-bar .nav-link {
   position: relative;
   text-decoration: none;
@@ -62,6 +71,7 @@ Next, we want to add the border, and hide it through a transformation.
 We do this by inserting it with :before, and setting its X scale to 0.
 As a fallback, we hide it with visibility: hidden for browsers that don’t support CSS animations.
 */
+
 .nav-bar .nav-link::before {
   content: "";
   position: absolute;
@@ -81,6 +91,7 @@ At the very bottom we tell the element to animate all changes applied to it,
 with a duration of 0.3 seconds. For the animation to appear, now we just need to make
 the element visible again on hover, and set its X scale back to 1:
 */
+
 .nav-bar .nav-link:hover::before {
   visibility: visible;
   -webkit-transform: scaleX(1);

@@ -1,26 +1,63 @@
 .container {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 .item {
-    padding: 5px;
-    background: rgb(240, 240, 240);
-    margin: auto;
-    margin-top: 10px;
-    width: 50%;
+  padding: 5px;
+  background: rgb(240, 240, 240);
+  margin: 10px auto auto;
+  width: 70%;
 }
 
-.operation {
-    width: 32px;
-    height: 32px;
-    background: rgb(200, 200, 200);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+// Grid style
+.thumbnail {
+  grid-area: thumbnail;
 }
 
-.operation:hover{
-    background: rgb(190, 190, 190);
-    cursor: pointer;
+.description {
+  grid-area: description;
+}
+
+.cost {
+  grid-area: cost;
+}
+
+.price {
+  grid-area: price;
+}
+
+.quantity {
+  grid-area: quantity;
+}
+
+.add {
+  grid-area: add;
+}
+
+.subtract {
+  grid-area: subtract;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas: 'thumbnail name subtract quantity add' 'thumbnail description price price price' 'thumbnail description cost cost cost';
+  grid-gap: 1px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 16px;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+}
+
+button {
+  width: 100%;
+  height: 100%;
 }

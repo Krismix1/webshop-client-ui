@@ -1,9 +1,20 @@
-<div *ngIf="items.length > 0">
-  <div class="" *ngFor="let item of items">
-    <app-cart-dashbord-item [item]="item">
-    </app-cart-dashbord-item>
+<div *ngIf="items.length > 0" class="cart">
+  <div class="cart-items">
+    <div *ngFor="let item of items">
+      <app-cart-dashbord-item [item]="item">
+      </app-cart-dashbord-item>
+    </div>
+  </div>
+  <div class="cart-totals">
+    <div class="subtotal">
+      <div class="cart-totals-key">Subtotal ( {{ totalQuantity }} {{ totalQuantity == 1 ? 'item' : 'items'}} )</div>
+      <div class="cart-totals-value">{{ totalPrice }}</div>
+    </div>
+    <div class="checkout">
+      <button class="btn checkout-btn entypo-forward">Checkout</button>
+    </div>
   </div>
 </div>
-<div *ngIf="items.length == 0" class="">
+<div *ngIf="items.length == 0" class="cart empty-cart">
   Shopping cart is empty :(
 </div>
