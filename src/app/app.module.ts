@@ -17,6 +17,7 @@ import { ProductDetailsComponent } from './product/product-details/product-detai
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { ProductService } from './services/product.service';
 import { CategoryService } from './services/category.service';
+import { StorageService } from './services/storage.service';
 import { ProductCardComponent } from './product/product-card/product-card.component';
 import { CategoryListItemComponent } from './category/category-list-item/category-list-item.component';
 import { CategoryListComponent } from './category/category-list/category-list.component';
@@ -26,7 +27,8 @@ import { ProductActions } from './product/product.actions';
 import { CartActions } from './cart/cart.actions';
 import { CartDashbordComponent } from './cart/cart-dashbord/cart-dashbord.component';
 import { CartDashbordItemComponent } from './cart/cart-dashbord-item/cart-dashbord-item.component';
-
+// auth
+import { AuthService } from './services/auth.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +53,7 @@ import { CartDashbordItemComponent } from './cart/cart-dashbord-item/cart-dashbo
     HttpClientModule,
     AngularFontAwesomeModule
   ],
-  providers: [ProductService, CategoryService, CategoryActions, ProductActions, CartActions],
+  providers: [ProductService, CategoryService, StorageService, AuthService, CategoryActions, ProductActions, CartActions],
   bootstrap: [AppComponent]
 })
 export class AppModule {

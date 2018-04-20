@@ -9,10 +9,14 @@
   margin: 10px auto auto;
   width: 70%;
 }
-
 // Grid style
+
 .thumbnail {
   grid-area: thumbnail;
+}
+
+.name {
+  grid-area: name;
 }
 
 .description {
