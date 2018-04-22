@@ -40,6 +40,8 @@ export function cartReducer(state: CartState = INITIAL_STATE, action: any) {
         // item not found
         return state;
       }
+    case CartActions.RECEIVED_ITEMS:
+      return tassign(state, { items: action.payload });
     default:
       return state;
   }

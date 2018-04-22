@@ -24,11 +24,17 @@ import { CategoryListComponent } from './category/category-list/category-list.co
 import { CategoryActions } from './category/category.actions';
 import { rootReducer, IAppState } from './store/store';
 import { ProductActions } from './product/product.actions';
+// cart
 import { CartActions } from './cart/cart.actions';
 import { CartDashbordComponent } from './cart/cart-dashbord/cart-dashbord.component';
 import { CartDashbordItemComponent } from './cart/cart-dashbord-item/cart-dashbord-item.component';
+import { CartEpic } from './epics/cart.epic';
 // auth
 import { AuthService } from './services/auth.service';
+// epic
+import { createEpicMiddleware, combineEpics } from 'redux-observable';
+import { createLogger } from 'redux-logger';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,14 +59,15 @@ import { AuthService } from './services/auth.service';
     HttpClientModule,
     AngularFontAwesomeModule
   ],
-  providers: [ProductService, CategoryService, StorageService, AuthService, CategoryActions, ProductActions, CartActions],
+  providers: [ProductService, CategoryService, StorageService, AuthService, CategoryActions, ProductActions, CartActions, CartEpic],
   bootstrap: [AppComponent]
 })
 export class AppModule {
 
   constructor(private ngRedux: NgRedux<IAppState>,
     private devTools: DevToolsExtension,
-    private ngReduxRouter: NgReduxRouter, ) {
+    private ngReduxRouter: NgReduxRouter,
+    private cartEpic: CartEpic) {
 
     let enhancers = [];
     // ... add whatever other enhancers are needed.
@@ -71,8 +78,20 @@ export class AppModule {
       enhancers = [...enhancers, devTools.enhancer()];
     }
 
-    this.ngRedux.configureStore(
-      rootReducer, {}, [], enhancers);
+    const rootEpic = combineEpics(
+      this.cartEpic.getItems, this.cartEpic.saveItems
+    );
+    // Middleware
+    // http://redux.js.org/docs/advanced/Middleware.html
+    // https://github.com/angular-redux/store/blob/master/articles/epics.md
+    // const epicMiddleware = createEpicMiddleware(rootEpic);
+    const middleware = [
+      createEpicMiddleware(rootEpic), createLogger({ level: 'info', collapsed: true })
+    ];
+    // this.ngRedux.configureStore(rootReducer, {}, middleware);
+
+
+    this.ngRedux.configureStore(rootReducer, {}, middleware, enhancers);
 
     ngReduxRouter.initialize(/* args */);
   }
