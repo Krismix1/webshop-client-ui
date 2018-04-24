@@ -14,7 +14,8 @@ export class ProductListComponent implements OnInit {
 
   products: Product[];
 
-  constructor(private ngRedux: NgRedux<IAppState>, private productActions: ProductActions, private productService: ProductService) { }
+  constructor(private ngRedux: NgRedux<IAppState>, private productActions: ProductActions,
+    private productService: ProductService) { }
 
   ngOnInit() {
     this.ngRedux.select(state => state.product)

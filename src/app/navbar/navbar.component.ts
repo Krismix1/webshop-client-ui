@@ -17,10 +17,9 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.ngRedux.select(state => state.cart)
       .subscribe(cart => {
-        this.cartActions.saveItems(cart.items);
         this.quantity = cart.items.map(item => item.quantity).reduce((a, b) => a + b, 0)
       });
-
+    this.cartActions.getItems();
   }
 
 }

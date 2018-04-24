@@ -42,7 +42,7 @@ export class CartEpic {
           .catch(error => {
             return Observable.of({
               type: CartActions.FAILED_SAVE_CART_ITEMS,
-              payload: error.json()
+              payload: error
             });
           });
       });

@@ -2,6 +2,14 @@ import { Category } from './category';
 
 export class Product {
 
+  set id(id: number) {
+    this.id = id
+  }
+
+  get id(): number {
+    return this.id;
+  }
+
   set name(name: string) {
     this.name = name;
   }
@@ -19,31 +27,13 @@ export class Product {
   }
 
   // Set the URL for the image of the product
-  set image(url: string) {
-    this.image = url;
+  set imageUri(url: string) {
+    this.imageUri = url;
   }
 
   // Return the URL of the image of the product
-  get image(): string {
-    return this.image;
-  }
-
-  // Set the URL for the thumbnail image of the product
-  set thumbnail(url: string) {
-    this.thumbnail = url;
-  }
-
-  // Return the URL of the thumbnail image of the product
-  get thumbnail(): string {
-    return this.thumbnail;
-  }
-
-  set category(category: Category) {
-    this.category = category;
-  }
-
-  get category(): Category {
-    return this.category;
+  get imageUri(): string {
+    return this.imageUri;
   }
 
   set shortDescription(description: string) {
@@ -52,5 +42,13 @@ export class Product {
 
   get shortDescription(): string {
     return this.shortDescription;
+  }
+
+  set type(type: any) {
+    this.type = type
+  }
+
+  get type(): any {
+    return this.type;
   }
 }

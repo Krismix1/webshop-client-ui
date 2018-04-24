@@ -1,6 +1,6 @@
 <div class="product-card">
-  <div class="product-card-thumbnail">
-    <img src="{{ product.thumbnailUri }}">
+  <div class="product-card-thumbnail" (click)="productClicked()">
+    <img src="{{ product.imageUri }}">
   </div>
   <div class="product-card-details">
     <h2 class="product-card-name">

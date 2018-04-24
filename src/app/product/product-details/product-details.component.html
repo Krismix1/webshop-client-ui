@@ -1,3 +1,14 @@
-<p>
-  product-details works!
-</p>
+<div class="product-details">
+  <div class="name">
+    {{ product.name }}
+  </div>
+  <div class="price">
+    {{ product.price }}
+  </div>
+  <div class="image">
+    <img src="{{product.imageUri}}" alt="Image">
+  </div>
+  <div class="type">
+    {{ product.type.name }}
+  </div>
+</div>

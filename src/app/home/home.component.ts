@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CartActions } from './../cart/cart.actions';
 
 @Component({
   selector: 'app-home',
@@ -8,10 +7,8 @@ import { CartActions } from './../cart/cart.actions';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private cartActions: CartActions) { }
+  constructor() { }
 
   ngOnInit() {
-    this.cartActions.getItems();
   }
-
 }

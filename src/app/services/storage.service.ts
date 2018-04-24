@@ -16,30 +16,25 @@ export class StorageService {
   constructor(private cartActions: CartActions, private http: HttpClient, private authService: AuthService) { }
 
   getCartItems() {
-    let storedItems = sessionStorage.getItem('cartItems');
-    if (storedItems === null) {
-      if (this.authService.isLoggedIn()) {
-        // FIXME: retrieve data based on username
+    if (this.authService.isLoggedIn()) {
+      // FIXME: retrieve data based on username
+      return Observable.from([]);
+    } else {
+      // retrieve data based on token
+      let storedItemsKey = localStorage.getItem(StorageService.USER_KEY);
+      if (storedItemsKey === null) { // no key saved
+        // request a new key
+        this.http.get<any>(this._baseUrl + "/users/anonymous/key").subscribe(data => {
+          storedItemsKey = data.key;
+          localStorage.setItem(StorageService.USER_KEY, storedItemsKey);
+        });
+        // because key was not present
+        // then we cannot restore any previous items
         return Observable.from([]);
       } else {
-        // retrieve data based on token
-        let storedItemsKey = localStorage.getItem(StorageService.USER_KEY);
-        if (storedItemsKey === null) { // no key saved
-          // request a new key
-          this.http.get<any>(this._baseUrl + "/users/anonymous/key").subscribe(data => {
-            storedItemsKey = data.key;
-            localStorage.setItem(StorageService.USER_KEY, storedItemsKey);
-          });
-          // because key was not present
-          // then we cannot restore any previous items
-          return Observable.from([]);
-        } else {
-          // retrieve items based on key
-          return Observable.from(this.http.get<CartItem[]>(this._baseUrl + `/cart/${storedItemsKey}/items`));
-        }
+        // retrieve items based on key
+        return Observable.from(this.http.get<CartItem[]>(this._baseUrl + `/cart/${storedItemsKey}/items`));
       }
-    } else {
-      return Observable.from(JSON.parse(storedItems || '[]'));
     }
   }
 
@@ -52,7 +47,7 @@ export class StorageService {
   saveItems(items: CartItem[]) {
     let storedItemsKey = localStorage.getItem(StorageService.USER_KEY);
     if (storedItemsKey !== null) {
-      return this.http.put(`${this._baseUrl}/cart/${storedItemsKey}`, items, this.httpOptions);
+      return this.http.put(`${this._baseUrl}/cart/${storedItemsKey}`, { items }, this.httpOptions);
     } else {
       console.error('No user key stored');
       return Observable.of();
