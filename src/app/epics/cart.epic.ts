@@ -20,13 +20,13 @@ export class CartEpic {
     return action$.ofType(CartActions.GET_ITEMS) // Listen for this action
       .mergeMap(({ payload }) => { // When this action is activated, call ws through service class
         return this.storageService.getCartItems()
-          .map(result => ({ // when web service responds with success, call this action with payload that came back from webservice
+          .map(results => ({ // when web service responds with success, call this action with payload that came back from webservice
             type: CartActions.RECEIVED_ITEMS,
-            payload: result
+            payload: { results: results, initialized: true }
           }))
           .catch(error => Observable.of({ // when web service responds with failure, call this action with payload that came back from webservice
             type: CartActions.FAILED_RECEIVING_ITEMS,
-            payload: error.json()
+            payload: { error: error.json(), initialized: true }
           }));
       });
   }
@@ -35,9 +35,9 @@ export class CartEpic {
     return action$.ofType(CartActions.SAVE_CART_ITEMS)
       .mergeMap(({ payload }) => {
         return this.storageService.saveItems(payload)
-          .map(results => ({
+          .map(result => ({
             type: CartActions.SUCCESS_SAVE_CART_ITEMS,
-            payload: results ||  ''
+            payload: result || ''
           }))
           .catch(error => {
             return Observable.of({

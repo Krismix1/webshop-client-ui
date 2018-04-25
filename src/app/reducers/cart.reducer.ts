@@ -3,7 +3,7 @@ import { CartActions } from './../cart/cart.actions';
 import { CartItem } from './../entities/cart-item';
 import { tassign } from 'tassign';
 
-const INITIAL_STATE: CartState = { items: [] };
+const INITIAL_STATE: CartState = { items: [], initialized: false };
 
 export function cartReducer(state: CartState = INITIAL_STATE, action: any) {
   switch (action.type) {
@@ -41,10 +41,10 @@ export function cartReducer(state: CartState = INITIAL_STATE, action: any) {
         return state;
       }
     case CartActions.RECEIVED_ITEMS:
-      return tassign(state, { items: action.payload });
+      return tassign(state, { items: action.payload.results, initialized: true });
     case CartActions.FAILED_SAVE_CART_ITEMS:
-      console.error('Failed to save items', action.payload);
-      return state;
+      console.error('Failed to save items', action.payload.error);
+      return tassign(state, { initialized: true });
     default:
       return state;
   }

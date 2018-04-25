@@ -19,6 +19,7 @@ export class ProductState {
 
 export class CartState {
   items: CartItem[];
+  initialized: boolean;
 }
 
 export class IAppState {

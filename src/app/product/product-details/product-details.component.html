@@ -1,14 +1,19 @@
 <div class="product-details">
+  <div class="image">
+    <img src="{{product.imageUri}}" alt="Image">
+  </div>
   <div class="name">
     {{ product.name }}
   </div>
   <div class="price">
     {{ product.price }}
   </div>
-  <div class="image">
-    <img src="{{product.imageUri}}" alt="Image">
-  </div>
   <div class="type">
     {{ product.type.name }}
   </div>
+  <div class="description">
+    {{ product.shortDescription }}
+  </div>
+  <button class="btn" (click)="addToCart()">Add to cart</button>
+  <span class="vertical-spacer"></span>
 </div>

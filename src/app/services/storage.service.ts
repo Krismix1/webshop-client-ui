@@ -47,7 +47,7 @@ export class StorageService {
   saveItems(items: CartItem[]) {
     let storedItemsKey = localStorage.getItem(StorageService.USER_KEY);
     if (storedItemsKey !== null) {
-      return this.http.put(`${this._baseUrl}/cart/${storedItemsKey}`, { items }, this.httpOptions);
+      return this.http.put(`${this._baseUrl}/cart/${storedItemsKey}`, { items:items }, this.httpOptions);
     } else {
       console.error('No user key stored');
       return Observable.of();
