@@ -1,0 +1,36 @@
+<div class="container">
+  <form [formGroup]="loginForm" novalidate (submit)="onSubmitLogin(loginForm)">
+    <div>
+      <span class="required">*</span>
+      <mat-form-field>
+        <input matInput placeholder="Username" formControlName="username">
+        <mat-error *ngIf="loginForm.controls.username.errors?.required && loginForm.controls.username.touched">
+          Please fill out the username
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <span class="required">*</span>
+      <mat-form-field>
+        <input matInput placeholder="Password" type="password" formControlName="password">
+        <mat-error *ngIf="loginForm.controls.password.errors?.required && loginForm.controls.password.touched">
+          Please fill out the password
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <button type="submit" class="btn">Login</button>
+    <div style="margin: 10px 0px;">
+      Fields marked with <span class="required">*</span> are required.
+    </div>
+    <div class="status" *ngIf="status == STATUS_INVALID_FORM">
+      Please fill all fields marken with <span class="required">*</span>.
+    </div>
+    <div class="status" *ngIf="status == STATUS_SENDING_REQUEST">
+      Sending request...
+    </div>
+    <div class="status" *ngIf="status == STATUS_SUCCESS_LOGIN">
+      Logged in.
+    </div>
+  </form>
+</div>

@@ -6,6 +6,7 @@ import { NgRedux, NgReduxModule, DevToolsExtension } from '@angular-redux/store'
 import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -34,7 +35,11 @@ import { AuthService } from './services/auth.service';
 // epic
 import { createEpicMiddleware, combineEpics } from 'redux-observable';
 import { createLogger } from 'redux-logger';
-
+import { LoginComponent } from './auth/login/login.component';
+import { AccountComponent } from './user/account/account.component';
+// guards
+import { AuthGuard } from './auth/auth-guard';
+import { AnonymousGuard } from './anonymous-guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +52,9 @@ import { createLogger } from 'redux-logger';
     CategoryListItemComponent,
     CategoryListComponent,
     CartDashbordComponent,
-    CartDashbordItemComponent
+    CartDashbordItemComponent,
+    LoginComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
@@ -57,9 +64,11 @@ import { createLogger } from 'redux-logger';
     NgReduxModule,
     NgReduxRouterModule.forRoot(),
     HttpClientModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [ProductService, CategoryService, StorageService, AuthService, CategoryActions, ProductActions, CartActions, CartEpic],
+  providers: [AnonymousGuard, AuthGuard, ProductService, CategoryService, StorageService, AuthService, CategoryActions, ProductActions, CartActions, CartEpic],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -6,7 +6,9 @@
     <span class="container-spacer"></span>
     <div class="cart-container"><a routerLink="/cart" class="cart"><span class="counter">{{ quantity }}</span></a></div>
     <div>
-      <a class="nav-item nav-link" routerLink="/login">Login</a>
+      <a class="nav-item nav-link" routerLink="/login" *ngIf="!authService.isLoggedIn()">Login</a>
+      <a class="nav-item nav-link" routerLink="/account" *ngIf="authService.isLoggedIn()">My account</a>
+      <a class="nav-item nav-link" *ngIf="authService.isLoggedIn()" (click)="logout(); $event.stopPropagation();">Logout</a>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
