@@ -7,6 +7,10 @@ import { LoginComponent } from './auth/login/login.component';
 import { AccountComponent } from './user/account/account.component';
 import { AuthGuard } from './auth/auth-guard';
 import { AnonymousGuard } from './anonymous-guard';
+// info page
+import { InformationComponent } from './info/information/information.component';
+import { ContactComponent } from './info/contact/contact.component';
+import { FAQComponent } from './info/faq/faq.component';
 
 const routes: Routes = [
   {
@@ -35,6 +39,20 @@ const routes: Routes = [
     path: "account",
     component: AccountComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'info',
+    component: InformationComponent,
+    children: [
+      {
+        path: 'contact',
+        component: ContactComponent
+      },
+      {
+        path: 'faq',
+        component: FAQComponent
+      }
+    ]
   }
 ];
 

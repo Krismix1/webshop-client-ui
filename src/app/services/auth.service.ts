@@ -52,7 +52,7 @@ export class AuthService {
   }
 
   logout(): void {
-    this.loggedIn = false;
+    // this.loggedIn = false;
     this.tokenStorage.logout();
   }
 }

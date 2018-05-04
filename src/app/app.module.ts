@@ -43,6 +43,10 @@ import { AccountComponent } from './user/account/account.component';
 import { AuthGuard } from './auth/auth-guard';
 import { AnonymousGuard } from './anonymous-guard';
 import { TokenStorageService } from './auth/token-storage.service';
+// info page
+import { ContactComponent } from './info/contact/contact.component';
+import { InformationComponent } from './info/information/information.component';
+import { FAQComponent } from './info/faq/faq.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +61,10 @@ import { TokenStorageService } from './auth/token-storage.service';
     CartDashbordComponent,
     CartDashbordItemComponent,
     LoginComponent,
-    AccountComponent
+    AccountComponent,
+    ContactComponent,
+    InformationComponent,
+    FAQComponent
   ],
   imports: [
     BrowserModule,

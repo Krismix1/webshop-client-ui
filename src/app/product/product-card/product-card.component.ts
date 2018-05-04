@@ -21,6 +21,6 @@ export class ProductCardComponent implements OnInit {
   }
 
   productClicked() {
-    this.router.navigate([`product/${this.product.id}`])
+    this.router.navigate(['product', this.product.id])
   }
 }
