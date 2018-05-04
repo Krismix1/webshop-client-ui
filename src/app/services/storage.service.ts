@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CartActions } from './../cart/cart.actions';
 import { CartItem } from './../entities/cart-item';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Response } from '@angular/http';
 import { AuthService } from './auth.service';
 
@@ -38,16 +38,10 @@ export class StorageService {
     }
   }
 
-  readonly httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
-
   saveItems(items: CartItem[]) {
     let storedItemsKey = localStorage.getItem(StorageService.USER_KEY);
     if (storedItemsKey !== null) {
-      return this.http.put(`${this._baseUrl}/cart/${storedItemsKey}`, { items:items }, this.httpOptions);
+      return this.http.put(`${this._baseUrl}/cart/${storedItemsKey}`, { items:items });
     } else {
       console.error('No user key stored');
       return Observable.of();

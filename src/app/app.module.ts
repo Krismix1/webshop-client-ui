@@ -32,6 +32,8 @@ import { CartDashbordItemComponent } from './cart/cart-dashbord-item/cart-dashbo
 import { CartEpic } from './epics/cart.epic';
 // auth
 import { AuthService } from './services/auth.service';
+// http interceptors
+import { httpInterceptorProviders } from './http-interceptors';
 // epic
 import { createEpicMiddleware, combineEpics } from 'redux-observable';
 import { createLogger } from 'redux-logger';
@@ -40,6 +42,7 @@ import { AccountComponent } from './user/account/account.component';
 // guards
 import { AuthGuard } from './auth/auth-guard';
 import { AnonymousGuard } from './anonymous-guard';
+import { TokenStorageService } from './auth/token-storage.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,7 +71,9 @@ import { AnonymousGuard } from './anonymous-guard';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [AnonymousGuard, AuthGuard, ProductService, CategoryService, StorageService, AuthService, CategoryActions, ProductActions, CartActions, CartEpic],
+  providers: [AnonymousGuard, AuthGuard, ProductService, CategoryService,
+    StorageService, AuthService, CategoryActions, ProductActions, CartActions,
+    CartEpic, TokenStorageService, httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule {

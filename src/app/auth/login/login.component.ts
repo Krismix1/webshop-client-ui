@@ -37,9 +37,13 @@ export class LoginComponent implements OnInit {
 
     this.status = this.STATUS_SENDING_REQUEST;
     this.authService.login(form.value.username, form.value.password)
-      .subscribe(res => {
-        this.status = this.STATUS_SUCCESS_LOGIN;
-        this.router.navigate([this.authService.redirectUrl || 'home']);
+      .subscribe({
+        next: val => {
+          this.status = this.STATUS_SUCCESS_LOGIN;
+          this.router.navigate([this.authService.redirectUrl || 'home']);
+        },
+        complete: () => this.status = -1,
+        error: val => console.log('Error:', JSON.parse(JSON.stringify(val))) // TODO: Make some feedback
       });
   }
 }
