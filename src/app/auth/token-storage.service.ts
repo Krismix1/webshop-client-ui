@@ -7,7 +7,7 @@ export class TokenStorageService {
 
   constructor() { }
 
-  signOut() {
+  logout() {
     window.sessionStorage.removeItem(TOKEN_KEY);
   }
 

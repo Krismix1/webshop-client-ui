@@ -1,3 +1,4 @@
 export class Principal {
-  public roles: string[];
+  public user: string;
+  public authorities: string[];
 }
