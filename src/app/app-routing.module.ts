@@ -11,6 +11,8 @@ import { AnonymousGuard } from './anonymous-guard';
 import { InformationComponent } from './info/information/information.component';
 import { ContactComponent } from './info/contact/contact.component';
 import { FAQComponent } from './info/faq/faq.component';
+// 404 page
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -53,6 +55,10 @@ const routes: Routes = [
         component: FAQComponent
       }
     ]
+  },
+  {
+    path: "**",
+    component: PageNotFoundComponent
   }
 ];
 

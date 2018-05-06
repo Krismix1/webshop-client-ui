@@ -47,6 +47,7 @@ import { TokenStorageService } from './auth/token-storage.service';
 import { ContactComponent } from './info/contact/contact.component';
 import { InformationComponent } from './info/information/information.component';
 import { FAQComponent } from './info/faq/faq.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +65,8 @@ import { FAQComponent } from './info/faq/faq.component';
     AccountComponent,
     ContactComponent,
     InformationComponent,
-    FAQComponent
+    FAQComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
