@@ -7,12 +7,13 @@ import 'rxjs/add/operator/delay';
 import { TokenStorageService } from './../auth/token-storage.service';
 import { AccessToken } from './../entities/access-token';
 import { Principal } from './../entities/principal';
+import { environment } from './../../environments/environment';
 
 @Injectable()
 export class AuthService {
 
   redirectUrl: string;
-  private readonly _baseUrl = 'http://localhost:8082';
+  private readonly _baseUrl = `${environment.authService}`;
   private user: Principal;
 
   constructor(private httpClient: HttpClient, private tokenStorage: TokenStorageService) { }

@@ -1,4 +1,4 @@
-<div class="product-list">
+<div class="product-list" (onDescriptionClicked)="receiveEvent()">
   <div class="product-card-wrapper" *ngFor="let product of products">
     <app-product-card [product]="product">Product item...</app-product-card>
   </div>

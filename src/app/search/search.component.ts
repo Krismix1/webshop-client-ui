@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgRedux } from '@angular-redux/store';
+import { Product } from './../entities/product';
+import { IAppState } from './../store/store';
 
 @Component({
   selector: 'app-search',
@@ -7,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  private products: Product[];
+  constructor(private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {
+    this.ngRedux.select(state => state.product).subscribe(productState => this.products = productState.products);
   }
 
 }

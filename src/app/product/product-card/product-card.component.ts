@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from './../../entities/product';
 import { CartActions } from './../../cart/cart.actions';
@@ -9,6 +9,8 @@ import { CartActions } from './../../cart/cart.actions';
   styleUrls: ['./product-card.component.scss']
 })
 export class ProductCardComponent implements OnInit {
+
+  @Output() onDescriptionClicked = new EventEmitter();
 
   @Input() product: Product;
   constructor(private cartActions: CartActions, private router: Router) { }
@@ -22,5 +24,14 @@ export class ProductCardComponent implements OnInit {
 
   productClicked() {
     this.router.navigate(['product', this.product.id])
+  }
+
+  descriptionClicked() {
+    console.log(`Dispatching action with payload ${this.product.shortDescription}`)
+    this.onDescriptionClicked.emit(this.product.shortDescription);
+  }
+
+  receiveEvent(data) {
+    console.log(`Loooooooooool`);
   }
 }
