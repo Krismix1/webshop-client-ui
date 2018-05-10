@@ -4,28 +4,29 @@ import { cartReducer } from './cart.reducer';
 import * as types from './../cart/cart.actions';
 import { Product } from './../entities/product';
 import { CartItem } from './../entities/cart-item';
+import { CartState } from '../store/store';
 
 describe('cart reducers', () => {
 
   let products: Product[] = [{
     name: "test_name",
     price: 999,
-    image: "test_image",
-    thumbnail: "test_thumbnail",
-    category: null,
-    shortDescription: "some very short testing description"
+    imageUri: "test_image",
+    shortDescription: "some very short testing description",
+    type: null,
+    id: 0
   },
   {
     name: "test_name_2",
     price: 222,
-    image: "test_image_2",
-    thumbnail: "test_thumbnail_2",
-    category: null,
-    shortDescription: "testing description 2"
+    imageUri: "test_image_2",
+    shortDescription: "testing description 2",
+    type: null,
+    id: 0
   }];
 
   it('1. should return initial state', () => {
-    expect(cartReducer(undefined, {})).toEqual({ items: [] });
+    expect(cartReducer(undefined, {})).toEqual({ items: [], initialized: false });
   });
 
   it('2. should add new item', () => {
@@ -38,11 +39,11 @@ describe('cart reducers', () => {
       type: types.CartActions.PUT_PRODUCT,
       payload: product
     });
-    expect(stateAfter).toEqual({ items: [cartItem] });
+    expect(stateAfter).toEqual({ items: [cartItem], initialized: false });
   });
 
   it('3. should add 2 different items', () => {
-    let stateBefore = [];
+    let stateBefore: CartState = { items: [], initialized: false };
     let product: Product = products[0];
     let cartItem: CartItem = { product: product, quantity: 1 };
     deepFreeze(stateBefore);
@@ -51,7 +52,7 @@ describe('cart reducers', () => {
       type: types.CartActions.PUT_PRODUCT,
       payload: product
     });
-    expect(stateAfter).toEqual({ items: [cartItem] });
+    expect(stateAfter).toEqual({ items: [cartItem], initialized: false });
 
     // add the second item
     stateBefore = stateAfter;
@@ -64,11 +65,11 @@ describe('cart reducers', () => {
       payload: product2
     });
 
-    expect(stateAfter).toEqual({ items: [cartItem, cartItem2] });
+    expect(stateAfter).toEqual({ items: [cartItem, cartItem2], initialized: false });
   });
 
   it('4. should add 2 similar items', () => {
-    let stateBefore = [];
+    let stateBefore: CartState = { items: [], initialized: false };
     let product: Product = products[0];
     let cartItem: CartItem = { product: product, quantity: 1 };
     deepFreeze(stateBefore);
@@ -77,17 +78,17 @@ describe('cart reducers', () => {
       type: types.CartActions.PUT_PRODUCT,
       payload: product
     });
-    expect(stateAfter).toEqual({ items: [cartItem] });
+    expect(stateAfter).toEqual({ items: [cartItem], initialized: false });
 
     // add the second item
     stateBefore = stateAfter;
     let product2: Product = {
       name: "test_name",
       price: 999,
-      image: "test_image",
-      thumbnail: "test_thumbnail",
-      category: null,
-      shortDescription: "some very short testing description"
+      imageUri: "test_image",
+      shortDescription: "some very short testing description",
+      id: 0,
+      type: null
     };
 
     deepFreeze(stateBefore);
@@ -97,11 +98,11 @@ describe('cart reducers', () => {
     });
 
     // expect the quantity to be incremented
-    expect(stateAfter).toEqual({ items: [{ product: products[0], quantity: 2 }] });
+    expect(stateAfter).toEqual({ items: [{ product: products[0], quantity: 2 }], initialized: false });
   });
 
   it('5. should add 2 similar and 1 different item', () => {
-    let stateBefore = [];
+    let stateBefore: CartState = { items: [], initialized: false };
     let product: Product = products[0];
     let cartItem: CartItem = { product: product, quantity: 1 };
     deepFreeze(stateBefore);
@@ -110,7 +111,7 @@ describe('cart reducers', () => {
       type: types.CartActions.PUT_PRODUCT,
       payload: product
     });
-    expect(stateAfter).toEqual({ items: [cartItem] });
+    expect(stateAfter).toEqual({ items: [cartItem], initialized: false });
 
     // add a different item
     stateBefore = stateAfter;
@@ -120,17 +121,17 @@ describe('cart reducers', () => {
       type: types.CartActions.PUT_PRODUCT,
       payload: products[1]
     });
-    expect(stateAfter).toEqual({ items: [cartItem, { product: products[1], quantity: 1 }] });
+    expect(stateAfter).toEqual({ items: [cartItem, { product: products[1], quantity: 1 }], initialized: false });
 
     // add the second similar item
     stateBefore = stateAfter;
     let product2: Product = {
       name: "test_name",
       price: 999,
-      image: "test_image",
-      thumbnail: "test_thumbnail",
-      category: null,
-      shortDescription: "some very short testing description"
+      imageUri: "test_image",
+      type: null,
+      shortDescription: "some very short testing description",
+      id: 0
     };
 
     deepFreeze(stateBefore);
@@ -140,6 +141,6 @@ describe('cart reducers', () => {
     });
 
     // expect the quantity to be incremented
-    expect(stateAfter).toEqual({ items: [{ product: products[0], quantity: 2 }, { product: products[1], quantity: 1 }] });
+    expect(stateAfter).toEqual({ items: [{ product: products[0], quantity: 2 }, { product: products[1], quantity: 1 }], initialized: false });
   });
 });
