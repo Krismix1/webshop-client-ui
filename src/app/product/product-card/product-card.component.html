@@ -1,4 +1,4 @@
-<div class="product-card">
+<div class="product-card" (onDescriptionClicked)="receiveEvent($event);">
   <div class="product-card-thumbnail" (click)="productClicked()">
     <img src="{{ product.imageUri }}">
   </div>
@@ -9,7 +9,7 @@
     <div class="price">
       <span class="current-price">{{ product.price }}</span>
     </div>
-    <div class="product-card-description">
+    <div class="product-card-description" (click)="descriptionClicked()">
       {{ product.shortDescription }}
     </div>
     <div class="cart-sign" (click)="onCartIconClicked()"><fa name="cart-plus" size="2x"></fa></div>

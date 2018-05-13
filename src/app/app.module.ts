@@ -48,6 +48,8 @@ import { ContactComponent } from './info/contact/contact.component';
 import { InformationComponent } from './info/information/information.component';
 import { FAQComponent } from './info/faq/faq.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+// search
+import { FilterProducts } from './products.filter';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +68,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ContactComponent,
     InformationComponent,
     FAQComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    FilterProducts
   ],
   imports: [
     BrowserModule,

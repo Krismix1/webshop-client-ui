@@ -4,6 +4,9 @@
     <i class="fas fa-search"></i>
   </div> -->
   <mat-form-field>
-    <input matInput placeholder="Search">
+    <input matInput placeholder="Search" [(ngModel)]="search">
   </mat-form-field>
+  <div *ngFor="let product of products | filterProducts: search" class="e2e-product">
+    {{ product.name }}
+  </div>
 </div>

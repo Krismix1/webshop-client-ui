@@ -7,11 +7,12 @@ import { AuthService } from './auth.service';
 
 import 'rxjs/add/observable/from';
 import { Observable } from 'rxjs/Rx';
+import { environment } from './../../environments/environment';
 
 @Injectable()
 export class StorageService {
 
-  private _baseUrl: string = "http://localhost:8081/api"
+  private _baseUrl: string = `${environment.clientService}/api`
   static readonly USER_KEY = 'userKey';
   constructor(private cartActions: CartActions, private http: HttpClient, private authService: AuthService) { }
 
