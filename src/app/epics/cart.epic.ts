@@ -26,7 +26,7 @@ export class CartEpic {
           }))
           .catch(error => Observable.of({ // when web service responds with failure, call this action with payload that came back from webservice
             type: CartActions.FAILED_RECEIVING_ITEMS,
-            payload: { error: error.json(), initialized: true }
+            payload: { error: error, initialized: true }
           }));
       });
   }

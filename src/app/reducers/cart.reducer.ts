@@ -44,7 +44,10 @@ export function cartReducer(state: CartState = INITIAL_STATE, action: any) {
       return tassign(state, { items: action.payload.results, initialized: true });
     case CartActions.FAILED_SAVE_CART_ITEMS:
       console.error('Failed to save items', action.payload.error);
-      return tassign(state, { initialized: true });
+      return state;
+    case CartActions.FAILED_RECEIVING_ITEMS:
+      console.error(action.payload.error)
+      return tassign(state, { initialized: true })
     default:
       return state;
   }

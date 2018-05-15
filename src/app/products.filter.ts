@@ -11,7 +11,6 @@ export class FilterProducts implements PipeTransform {
           || item.shortDescription && item.shortDescription.toLowerCase().includes(args.toLowerCase())
       );
       if (itemsFound && itemsFound.length > 0) {
-        console.log(itemsFound);
         return itemsFound;
       }
       return [-1]; // to display error message (none found) in view.

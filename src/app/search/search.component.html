@@ -6,7 +6,7 @@
   <mat-form-field>
     <input matInput placeholder="Search" [(ngModel)]="search">
   </mat-form-field>
-  <div *ngFor="let product of products | filterProducts: search" class="e2e-product">
+  <div *ngFor="let product of products | filterProducts: search">
     {{ product.name }}
   </div>
 </div>
