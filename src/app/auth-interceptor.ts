@@ -14,16 +14,17 @@ const CONTENT_TYPE_HEADER = 'Content-Type';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private token: TokenStorageService, private router: Router) { }
+  constructor(private TokenStorageService: TokenStorageService, private router: Router) { }
 
   intercept(req: any, next: HttpHandler): any {
     let authReq = req;
     if (req.url.toLowerCase().includes('oauth/token') && req.method.toLowerCase() === 'post') {
       console.log('Intercepted login request.')
     } else {
-      if(this.token.getToken() != null) {
+      const token = this.TokenStorageService.getToken();
+      if (token != null) {
         authReq = req.clone({
-          headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + this.token.getToken())
+          headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + token)
                     .set(CONTENT_TYPE_HEADER, 'application/json')
         });
       }

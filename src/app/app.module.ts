@@ -50,6 +50,9 @@ import { FAQComponent } from './info/faq/faq.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 // search
 import { FilterProducts } from './products.filter';
+// environment
+import { environment } from './../environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -99,7 +102,7 @@ export class AppModule {
     // ... add whatever other enhancers are needed.
 
     // You probably only want to expose this tool in devMode.
-    const __DEVMODE__ = true; // FIXME: Can't find where __DEVMODE__ is declared..., this is just a work around
+    const __DEVMODE__ = environment.dev;
     if (__DEVMODE__ && devTools.isEnabled()) {
       enhancers = [...enhancers, devTools.enhancer()];
     }

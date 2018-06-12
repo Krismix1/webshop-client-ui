@@ -5,7 +5,11 @@
 
 export const environment = {
   production: false,
+  dev: false,
+  test: false,
   authService: '',
   managementService: '',
-  clientService: ''
+  clientService: '',
+  jwtClient: '',
+  jwtSecret: ''
 };

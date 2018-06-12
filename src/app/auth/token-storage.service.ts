@@ -7,7 +7,7 @@ export class TokenStorageService {
 
   constructor() { }
 
-  logout() {
+  discardToken() {
     window.sessionStorage.removeItem(TOKEN_KEY);
   }
 
@@ -16,6 +16,6 @@ export class TokenStorageService {
   }
 
   getToken(): string {
-    return sessionStorage.getItem(TOKEN_KEY);
+    return window.sessionStorage.getItem(TOKEN_KEY);
   }
 }

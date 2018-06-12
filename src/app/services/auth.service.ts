@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/shareReplay';
+import 'rxjs/add/operator/map';
 import { TokenStorageService } from './../auth/token-storage.service';
 import { AccessToken } from './../entities/access-token';
 import { Principal } from './../entities/principal';
@@ -29,31 +29,28 @@ export class AuthService {
     formData.append('scope', 'webclient');
     formData.append('username', username);
     formData.append('password', password);
-    const basicAuth = btoa('webshopclient:mysecret');
+    const basicAuth = btoa(`${environment.jwtClient}:${environment.jwtSecret}`);
     return this.httpClient.post<AccessToken>(`${this._baseUrl}/oauth/token`, formData, {
       headers: {
-        'authorization': `Basic ${basicAuth}` // TODO: Make this a variable from environment object
+        'authorization': `Basic ${basicAuth}`
       }
     }).shareReplay().map(result => {
       console.log(result);
       if (result && result.access_token) {
         this.tokenStorage.saveToken(result.access_token);
-        // TODO: Create a new request to retrieve the roles of the user
+        // Create a new request to retrieve the roles of the user
         this.httpClient.get<Principal>(`${this._baseUrl}/user`).
           subscribe(res => {
             this.user = res;
           });
-        return Observable.of(true);
+        return true;
       } else {
         throw new Error("Invalid credentials")
       }
     });
-    // Make an http request, send username and password, get a user object back
-    // from the server, and save the user object in this class
   }
 
   logout(): void {
-    // this.loggedIn = false;
-    this.tokenStorage.logout();
+    this.tokenStorage.discardToken();
   }
 }

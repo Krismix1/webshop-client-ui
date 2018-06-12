@@ -1,7 +1,10 @@
 export const environment = {
   production: false,
+  test: false,
   dev: true,
-  authService: 'http://192.168.0.101:8082',
-  managementService: 'http://192.168.0.101:8080',
-  clientService: 'http://192.168.0.101:8081'
+  authService: 'http://localhost:8082',
+  managementService: 'http://localhost:8080',
+  clientService: 'http://localhost:8081',
+  jwtClient: 'webshopclient',
+  jwtSecret: 'mysecret'
 };
