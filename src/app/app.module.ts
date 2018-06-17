@@ -52,6 +52,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { FilterProducts } from './products.filter';
 // environment
 import { environment } from './../environments/environment';
+import { RegisterComponent } from './auth/register/register.component';
+import { EqualValidator } from './directives/equal-validator.directive';
 
 @NgModule({
   declarations: [
@@ -72,7 +74,9 @@ import { environment } from './../environments/environment';
     InformationComponent,
     FAQComponent,
     PageNotFoundComponent,
-    FilterProducts
+    FilterProducts,
+    RegisterComponent,
+    EqualValidator
   ],
   imports: [
     BrowserModule,

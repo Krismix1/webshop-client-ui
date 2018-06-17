@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="centered">
+    <form [formGroup]="registerForm" novalidate (submit)="onSubmitRegister(registerForm)">
+      <div>
+        <span class="required">*</span>
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="email">
+          <mat-error *ngIf="registerForm.controls.email.errors?.required && registerForm.controls.email.dirty">
+            Please fill out the email
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="" formGroupName="passwords">
+        <div>
+          <span class="required">*</span>
+          <mat-form-field>
+            <input matInput placeholder="Password" type="password" formControlName="password">
+            <mat-error *ngIf="registerForm.controls.passwords.controls.password.errors?.required && registerForm.controls.passwords.controls.password.dirty">
+              Please fill out the password
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <span class="required">*</span>
+          <mat-form-field>
+            <input matInput placeholder="Confirm password" type="password" formControlName="confirmPassword">
+            <mat-error *ngIf="registerForm.controls.passwords.controls.confirmPassword.errors?.required && registerForm.controls.passwords.controls.confirmPassword.dirty">
+              Please fill out the confirm password
+            </mat-error>
+            <mat-error *ngIf="registerForm.controls.passwords.errors?.mismatch">
+              Passwords must match
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <button type="submit" class="btn">Register</button>
+      <div style="margin: 10px 0px;">
+        Fields marked with <span class="required">*</span> are required.
+      </div>
+      <!-- <div class="status" *ngIf="status == STATUS_INVALID_FORM">
+        Please fill all fields marken with <span class="required">*</span>.
+      </div>
+      <div class="status" *ngIf="status == STATUS_SENDING_REQUEST">
+        Sending request...
+      </div>
+      <div class="status" *ngIf="status == STATUS_SUCCESS_LOGIN">
+        Logged in.
+      </div> -->
+    </form>
+    {{registerForm.controls.passwords.controls.confirmPassword.errors?.mismatch}}
+  </div>
+</div>

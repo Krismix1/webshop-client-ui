@@ -13,6 +13,7 @@ import { ContactComponent } from './info/contact/contact.component';
 import { FAQComponent } from './info/faq/faq.component';
 // 404 page
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,11 @@ const routes: Routes = [
     path: "account",
     component: AccountComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [AnonymousGuard]
   },
   {
     path: 'info',
