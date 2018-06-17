@@ -36,8 +36,16 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  matchValidator(group: FormGroup): any {
-    return group.get('password').value === group.get('confirmPassword').value
-      ? null : { 'mismatch': true };
+  // matchValidator(group: FormGroup): any {
+  //   return group.get('password').value === group.get('confirmPassword').value
+  //     ? null : { 'mismatch': true };
+  // }
+
+  matchValidator(control: AbstractControl): {[key: string]: any} | null {
+    const password = control.get('password');
+    const confirm = control.get('confirmPassword');
+    if (!password || !confirm) return null;
+    const match = password.value === confirm.value;
+    return match ? null : {'mismatch': true};
   }
 }

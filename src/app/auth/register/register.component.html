@@ -24,15 +24,31 @@
 
         <div>
           <span class="required">*</span>
-          <mat-form-field>
+          <!-- <mat-form-field>
             <input matInput placeholder="Confirm password" type="password" formControlName="confirmPassword">
-            <mat-error *ngIf="registerForm.controls.passwords.controls.confirmPassword.errors?.required && registerForm.controls.passwords.controls.confirmPassword.dirty">
+            <mat-error *ngIf="registerForm.controls.passwords.controls.confirmPassword.errors?.required && registerForm.controls.passwords.controls.confirmPassword.dirty; else noPasswordErrors">
               Please fill out the confirm password
             </mat-error>
-            <mat-error *ngIf="registerForm.controls.passwords.errors?.mismatch">
+
+            <ng-template #noPasswordErrors>
+              <mat-error *ngIf="registerForm.controls.passwords.errors?.mismatch">
+                Passwords must match
+              </mat-error>
+              <div class="" *ngIf="registerForm.controls.passwords.errors?.mismatch">
+                Passwords must match
+              </div>
+            </ng-template>
+          </mat-form-field> -->
+          <input placeholder="Confirm password" type="password" formControlName="confirmPassword">
+          <div *ngIf="registerForm.controls.passwords.controls.confirmPassword.errors?.required && registerForm.controls.passwords.controls.confirmPassword.dirty; else noPasswordErrors">
+            Please fill out the confirm password
+          </div>
+
+          <ng-template #noPasswordErrors>
+            <div *ngIf="registerForm.controls.passwords.controls.confirmPassword.dirty && registerForm.controls.passwords.errors?.mismatch">
               Passwords must match
-            </mat-error>
-          </mat-form-field>
+            </div>
+          </ng-template>
         </div>
       </div>
       <button type="submit" class="btn">Register</button>
