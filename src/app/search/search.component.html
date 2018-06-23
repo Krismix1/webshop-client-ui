@@ -3,10 +3,7 @@
   <div class="search-icon">
     <i class="fas fa-search"></i>
   </div> -->
-  <mat-form-field>
+  <mat-form-field color="accent" appearance="outline" floatLabel="never">
     <input matInput placeholder="Search" [(ngModel)]="search">
   </mat-form-field>
-  <div *ngFor="let product of products | filterProducts: search">
-    {{ product.name }}
-  </div>
 </div>

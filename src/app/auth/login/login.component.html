@@ -1,36 +1,48 @@
 <div class="container">
-  <form [formGroup]="loginForm" novalidate (submit)="onSubmitLogin(loginForm)">
-    <div>
-      <span class="required">*</span>
-      <mat-form-field>
-        <input matInput placeholder="Username" formControlName="username">
-        <mat-error *ngIf="loginForm.controls.username.errors?.required && loginForm.controls.username.touched">
-          Please fill out the username
-        </mat-error>
-      </mat-form-field>
-    </div>
+  <div class="form-group card">
+    <form [formGroup]="loginForm" novalidate (submit)="onSubmitLogin(loginForm)">
+      <div>
+        <mat-form-field appearance="outline" class="form-control">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            placeholder="Email"
+            formControlName="email"
+            required/>
+          <mat-error *ngIf="loginForm.controls.email.errors?.required && loginForm.controls.email.touched">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
 
-    <div>
-      <span class="required">*</span>
-      <mat-form-field>
-        <input matInput placeholder="Password" type="password" formControlName="password">
-        <mat-error *ngIf="loginForm.controls.password.errors?.required && loginForm.controls.password.touched">
-          Please fill out the password
-        </mat-error>
-      </mat-form-field>
-    </div>
-    <button type="submit" class="btn">Login</button>
-    <div style="margin: 10px 0px;">
-      Fields marked with <span class="required">*</span> are required.
-    </div>
-    <div class="status" *ngIf="status == STATUS_INVALID_FORM">
-      Please fill all fields marken with <span class="required">*</span>.
-    </div>
-    <div class="status" *ngIf="status == STATUS_SENDING_REQUEST">
-      Sending request...
-    </div>
-    <div class="status" *ngIf="status == STATUS_SUCCESS_LOGIN">
-      Logged in.
-    </div>
-  </form>
+      <div>
+        <mat-form-field appearance="outline" class="form-control">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            placeholder="Enter your password"
+            [type]="hidePassword ? 'password' : 'text'"
+            formControlName="password"
+            required/>
+          <mat-icon matTooltip="Show/hide password" matTooltipPosition="right" matSuffix (click)="hidePassword = !hidePassword">{{!hidePassword ? 'visibility' : 'visibility_off'}}</mat-icon>
+          <mat-error *ngIf="loginForm.controls.password.errors?.required && loginForm.controls.password.touched">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div style="margin: 10px 0px;">
+        Fields marked with <strong><span class="required">*</span></strong> are required.
+      </div>
+      <button type="submit" mat-raised-button color="primary">Login</button>
+      <div class="status-feedback" *ngIf="status == STATUS_SENDING_REQUEST">
+        Sending request...
+      </div>
+      <div class="status-feedback" *ngIf="status == STATUS_SUCCESS_LOGIN">
+        Logged in.
+      </div>
+      <div class="status-feedback" *ngIf="status == STATUS_NETWORK_ERROR">
+        Could not connect with the server.
+      </div>
+    </form>
+  </div>
 </div>

@@ -12,9 +12,11 @@ export class LoginComponent implements OnInit {
   readonly STATUS_INVALID_FORM = 1;
   readonly STATUS_SENDING_REQUEST = 2;
   readonly STATUS_SUCCESS_LOGIN = 3;
+  readonly STATUS_NETWORK_ERROR = 4;
 
   loginForm: FormGroup;
   status: number = 0;
+  hidePassword: boolean = true;
 
   constructor(private router: Router, private fb: FormBuilder, private authService: AuthService) { }
 
@@ -24,7 +26,7 @@ export class LoginComponent implements OnInit {
 
   createForm() {
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
@@ -36,14 +38,21 @@ export class LoginComponent implements OnInit {
     }
 
     this.status = this.STATUS_SENDING_REQUEST;
-    this.authService.login(form.value.username, form.value.password)
+    this.authService.login(form.value.email, form.value.password)
       .subscribe({
         next: val => {
           this.status = this.STATUS_SUCCESS_LOGIN;
           this.router.navigate([this.authService.redirectUrl || 'home']);
         },
         complete: () => this.status = -1,
-        error: val => console.log('Error:', JSON.parse(JSON.stringify(val))) // TODO: Make some feedback
-      });
+        error: err => {
+          // network error
+          switch (err.status) {
+            case 0:
+              this.status = this.STATUS_NETWORK_ERROR;
+              break;
+          }
+        }
+      }); // TODO: Make some feedback
   }
 }

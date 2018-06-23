@@ -15,6 +15,10 @@ describe('PageNotFoundComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PageNotFoundComponent);
+    // createComponent() does not bind data.
+    // Binding happens when Angular performs change detection.
+    // In production, change detection kicks in automatically when Angular creates a component or the user enters
+    // a keystroke or an asynchronous activity (e.g., AJAX) completes.
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -43,7 +47,7 @@ describe('PageNotFoundComponent', () => {
     expect(h1_.textContent.toLowerCase()).toContain('could not find page');
     // The DebugElement has other methods and properties that are useful in tests
     // Platforms: Browser, Server side render (render first on the server as part of a strategy to make the application launch faster)
-    // The server-side renderer might not support the full HTML element API If it doesn't support querySelector, the previous test could fail.
+    // The server-side renderer might not support the full HTML element API. If it doesn't support querySelector, the previous test could fail.
 
     // When you're filtering by CSS selector and only testing properties of a browser's native element, the By.css approach may be overkill.
     // It's often easier and more clear to filter with a standard HTMLElement method such as querySelector() or querySelectorAll(),

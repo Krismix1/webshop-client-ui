@@ -32,6 +32,7 @@ import { CartDashbordItemComponent } from './cart/cart-dashbord-item/cart-dashbo
 import { CartEpic } from './epics/cart.epic';
 // auth
 import { AuthService } from './services/auth.service';
+import { RegisterComponent } from './auth/register/register.component';
 // http interceptors
 import { httpInterceptorProviders } from './http-interceptors';
 // epic
@@ -52,8 +53,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { FilterProducts } from './products.filter';
 // environment
 import { environment } from './../environments/environment';
-import { RegisterComponent } from './auth/register/register.component';
 import { EqualValidator } from './directives/equal-validator.directive';
+// errors
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material';
+import { MismatchErrorStateMatcher } from './auth/register/register.component'
 
 @NgModule({
   declarations: [
@@ -92,7 +95,8 @@ import { EqualValidator } from './directives/equal-validator.directive';
   ],
   providers: [AnonymousGuard, AuthGuard, ProductService, CategoryService,
     StorageService, AuthService, CategoryActions, ProductActions, CartActions,
-    CartEpic, TokenStorageService, httpInterceptorProviders],
+    CartEpic, TokenStorageService, httpInterceptorProviders, {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
+    MismatchErrorStateMatcher],
   bootstrap: [AppComponent]
 })
 export class AppModule {

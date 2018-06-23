@@ -1,60 +1,72 @@
 <div class="container">
-  <div class="centered">
+  <div class="form-group card">
     <form [formGroup]="registerForm" novalidate (submit)="onSubmitRegister(registerForm)">
       <div>
-        <span class="required">*</span>
-        <mat-form-field>
-          <input matInput placeholder="Email" formControlName="email">
-          <mat-error *ngIf="registerForm.controls.email.errors?.required && registerForm.controls.email.dirty">
-            Please fill out the email
+        <mat-form-field appearance="outline" class="form-control">
+          <input matInput placeholder="Email" formControlName="email" required>
+          <mat-error
+            *ngIf="registerForm.controls.email.errors?.required &&
+              (registerForm.isSubmitted || registerForm.controls.email.dirty)">
+            Email is <strong>required</strong>
+          </mat-error>
+          <mat-error
+            *ngIf="!registerForm.controls.email.errors?.required &&
+              registerForm.controls.email.errors?.email &&
+              (registerForm.isSubmitted || registerForm.controls.email.dirty)">
+            Not valid <strong>email</strong>
           </mat-error>
         </mat-form-field>
       </div>
 
       <div class="" formGroupName="passwords">
         <div>
-          <span class="required">*</span>
-          <mat-form-field>
-            <input matInput placeholder="Password" type="password" formControlName="password">
-            <mat-error *ngIf="registerForm.controls.passwords.controls.password.errors?.required && registerForm.controls.passwords.controls.password.dirty">
-              Please fill out the password
+          <mat-form-field appearance="outline" class="form-control">
+            <input
+              matInput
+              #passwordInput
+              placeholder="Password"
+              [type]="hidePassword ? 'password' : 'text'"
+              formControlName="password"
+              required/>
+            <mat-icon matTooltip="Show/hide password" matTooltipPosition="right" matSuffix (click)="hidePassword = !hidePassword">{{!hidePassword ? 'visibility' : 'visibility_off'}}</mat-icon>
+            <mat-hint align="start">Minimum 4 characters</mat-hint>
+            <mat-hint align="end">{{passwordInput.value?.length || 0}}/4</mat-hint>
+            <mat-error
+              *ngIf="registerForm.controls.passwords.controls.password.errors?.required &&
+                (registerForm.isSubmitted || registerForm.controls.passwords.controls.password.dirty)">
+              Password is <strong>required</strong>
             </mat-error>
           </mat-form-field>
         </div>
 
         <div>
-          <span class="required">*</span>
-          <!-- <mat-form-field>
-            <input matInput placeholder="Confirm password" type="password" formControlName="confirmPassword">
-            <mat-error *ngIf="registerForm.controls.passwords.controls.confirmPassword.errors?.required && registerForm.controls.passwords.controls.confirmPassword.dirty; else noPasswordErrors">
-              Please fill out the confirm password
+          <mat-form-field appearance="outline" class="form-control">
+            <input
+              matInput
+              placeholder="Confirm password"
+              [type]="hideConfirmPassword ? 'password' : 'text'"
+              formControlName="confirmPassword"
+              required
+              [errorStateMatcher]="matcher"/>
+            <mat-icon matTooltip="Show/hide password" matTooltipPosition="right" matSuffix (click)="hideConfirmPassword = !hideConfirmPassword">{{!hideConfirmPassword ? 'visibility' : 'visibility_off'}}</mat-icon>
+            <mat-error
+              *ngIf="registerForm.controls.passwords.controls.confirmPassword.errors?.required &&
+                (registerForm.isSubmitted || registerForm.controls.passwords.controls.confirmPassword.dirty)">
+              Confirmation password is <strong>required</strong>
             </mat-error>
-
-            <ng-template #noPasswordErrors>
-              <mat-error *ngIf="registerForm.controls.passwords.errors?.mismatch">
-                Passwords must match
-              </mat-error>
-              <div class="" *ngIf="registerForm.controls.passwords.errors?.mismatch">
-                Passwords must match
-              </div>
-            </ng-template>
-          </mat-form-field> -->
-          <input placeholder="Confirm password" type="password" formControlName="confirmPassword">
-          <div *ngIf="registerForm.controls.passwords.controls.confirmPassword.errors?.required && registerForm.controls.passwords.controls.confirmPassword.dirty; else noPasswordErrors">
-            Please fill out the confirm password
-          </div>
-
-          <ng-template #noPasswordErrors>
-            <div *ngIf="registerForm.controls.passwords.controls.confirmPassword.dirty && registerForm.controls.passwords.errors?.mismatch">
-              Passwords must match
-            </div>
-          </ng-template>
+            <mat-error
+              *ngIf="registerForm.controls.passwords.errors?.mismatch &&
+                !registerForm.controls.passwords.controls.confirmPassword.errors?.required &&
+                (registerForm.controls.passwords.controls.confirmPassword.dirty || registerForm.isSubmitted)">
+              Passwords must <strong>match</strong>
+            </mat-error>
+          </mat-form-field>
         </div>
       </div>
-      <button type="submit" class="btn">Register</button>
       <div style="margin: 10px 0px;">
-        Fields marked with <span class="required">*</span> are required.
+        Fields marked with <strong><span class="required">*</span></strong> are required.
       </div>
+      <button type="submit" mat-raised-button color="primary">Register</button>
       <!-- <div class="status" *ngIf="status == STATUS_INVALID_FORM">
         Please fill all fields marken with <span class="required">*</span>.
       </div>
@@ -65,6 +77,5 @@
         Logged in.
       </div> -->
     </form>
-    {{registerForm.controls.passwords.controls.confirmPassword.errors?.mismatch}}
   </div>
 </div>
