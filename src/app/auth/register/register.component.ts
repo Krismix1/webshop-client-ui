@@ -24,7 +24,7 @@ export class MismatchErrorStateMatcher implements ErrorStateMatcher {
 })
 export class RegisterComponent implements OnInit {
 
-  registerForm: FormGroup;
+  registerForm;
   hidePassword: boolean = true;
   hideConfirmPassword: boolean = true;
 
@@ -45,7 +45,8 @@ export class RegisterComponent implements OnInit {
     this.registerForm.statusChanges.subscribe(() => this.registerForm.isSubmitted = false)
   }
 
-  onSubmitRegister(form: FormGroup) {
+  onSubmitRegister(form) {
+    // TODO: See about creating a specific class and add isSubmitted property
     form.isSubmitted = true
     if (form.valid) {
       console.log('valid form', form);
