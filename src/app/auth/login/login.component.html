@@ -41,7 +41,10 @@
         Logged in.
       </div>
       <div class="status-feedback" *ngIf="status == STATUS_NETWORK_ERROR">
-        Could not connect with the server.
+        Could not connect with the server. Please try again later.
+      </div>
+      <div class="status-feedback" *ngIf="status == STATUS_CUSTOM_MESSAGE">
+        {{ message }}
       </div>
     </form>
   </div>

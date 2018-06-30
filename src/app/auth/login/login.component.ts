@@ -13,10 +13,12 @@ export class LoginComponent implements OnInit {
   readonly STATUS_SENDING_REQUEST = 2;
   readonly STATUS_SUCCESS_LOGIN = 3;
   readonly STATUS_NETWORK_ERROR = 4;
+  readonly STATUS_CUSTOM_MESSAGE = 5;
 
   loginForm: FormGroup;
   status: number = 0;
   hidePassword: boolean = true;
+  message: String = ''
 
   constructor(private router: Router, private fb: FormBuilder, private authService: AuthService) { }
 
@@ -44,14 +46,10 @@ export class LoginComponent implements OnInit {
           this.status = this.STATUS_SUCCESS_LOGIN;
           this.router.navigate([this.authService.redirectUrl || 'home']);
         },
-        complete: () => this.status = -1,
-        error: err => {
-          // network error
-          switch (err.status) {
-            case 0:
-              this.status = this.STATUS_NETWORK_ERROR;
-              break;
-          }
+        error: msg => {
+          console.log({'debug': msg})
+          this.status = this.STATUS_CUSTOM_MESSAGE;
+          this.message = msg
         }
       }); // TODO: Make some feedback
   }

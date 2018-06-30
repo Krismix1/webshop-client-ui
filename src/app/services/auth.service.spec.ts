@@ -216,8 +216,8 @@ describe('AuthService', () => {
     authService.login('test username', 'test password')
       .subscribe(
         data => fail('should have failed with the network error'),
-        (error: HttpErrorResponse) => {
-          expect(error.error.message).toEqual(emsg, 'message');
+        error => {
+          expect(error).toEqual('No connection with the server.', 'message');
         }
       );
 
