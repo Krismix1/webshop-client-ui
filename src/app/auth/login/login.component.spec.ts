@@ -101,17 +101,55 @@ describe('LoginComponent', () => {
     expect(mockRouter.navigate.calls.argsFor(0)[0]).toEqual(['testUrl'], 'Component should redirect to specified URL.')
   });
 
-  it('9. Should change status to invalid credentials after login', () => {
+  it('9. Should show invalid credentials message after login', () => {
     const msg: String = 'Invalid credentials'
     authService.login.and.returnValue(_throw(msg))
     component.loginForm.controls.email.setValue('a')
     component.loginForm.controls.password.setValue('pass')
     component.onSubmitLogin(component.loginForm)
     expect(component.status).toBe(component.STATUS_CUSTOM_MESSAGE, 'Component status should change to success login')
-    expect(component.message).toBe('Invalid credentials', 'Component message should display the error message')
+    expect(component.message).toBe(msg, 'Component message should display the error message')
   });
 
-  it('10. Should change status to network error after login', () => {
-    fail('Not implemented')
+  it('10. Should show network error message after login', () => {
+    const msg: String = 'Network error'
+    authService.login.and.returnValue(_throw(msg))
+    component.loginForm.controls.email.setValue('a')
+    component.loginForm.controls.password.setValue('pass')
+    component.onSubmitLogin(component.loginForm)
+    expect(component.status).toBe(component.STATUS_CUSTOM_MESSAGE, 'Component status should change to success login')
+    expect(component.message).toBe(msg, 'Component message should display the error message')
   });
+
+  it('11. Should require email and password fields to not be empty', () => {
+    fail('Not implemented')
+  })
+
+  it('12. When page is created displays clean form with no errors', () => {
+    fail('Not implemented')
+  })
+
+  it('13. Should not show error if fields are touched but not dirty', () => {
+    fail('Not implemented')
+  })
+
+  it('14. Should display invalid form message if any validator fails', () => {
+    fail('Not implemented')
+  })
+
+  it('15. Should show error when fields are dirty and empty', () => {
+    fail('Not implemented')
+  })
+
+  it('16. Should remove errors when fields have text', () => {
+    fail('Not implemented')
+  })
+
+  it('17. Should show custom message when service fails', () => {
+    fail('Not implemented')
+  })
+
+  it('18. Should toggle password field input type', () => {
+    fail('Not implemented')
+  })
 });
