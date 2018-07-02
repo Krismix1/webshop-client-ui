@@ -11,6 +11,7 @@ export class CategoryActions {
   static ADD_CATEGORY: string = 'ADD_CATEGORY';
   static SET_CATEGORIES: string = 'SET_CATEGORIES';
   static SET_PRODUCT_CATEGORY: string = 'SET_PRODUCT_CATEGORY';
+  static TOGGLE_CATEGORY_LIST: string = 'TOGGLE_CATEGORY_LIST';
 
   addCategory(category: Category): void {
     this.ngRedux.dispatch({
@@ -31,5 +32,11 @@ export class CategoryActions {
       type: CategoryActions.SET_PRODUCT_CATEGORY,
       payload: category
     });
+  }
+
+  toggleCategoryList(): void {
+    this.ngRedux.dispatch({
+      type: CategoryActions.TOGGLE_CATEGORY_LIST
+    })
   }
 }

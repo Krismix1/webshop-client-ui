@@ -2,7 +2,7 @@ import { CategoryActions } from './../category/category.actions';
 import { CategoryState } from './../store/store';
 import { tassign } from 'tassign';
 
-const INITIAL_STATE: CategoryState = { categories: [], currentCategory: undefined }
+const INITIAL_STATE: CategoryState = { categories: [], currentCategory: undefined, displayList: true }
 
 export function categoryReducer(state: CategoryState = INITIAL_STATE, action: any) {
   switch (action.type) {
@@ -15,6 +15,8 @@ export function categoryReducer(state: CategoryState = INITIAL_STATE, action: an
         return tassign(state, { currentCategory: undefined }); // deselect the category if clicked when selected
       }
       return tassign(state, { currentCategory: action.payload });
+    case CategoryActions.TOGGLE_CATEGORY_LIST:
+      return tassign(state, { displayList: !state.displayList})
     default:
       return state;
   }

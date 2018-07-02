@@ -10,6 +10,7 @@ import { CartItem } from './../entities/cart-item';
 export class CategoryState {
   categories: Category[];
   currentCategory: Category;
+  displayList: boolean;
 }
 
 export class ProductState {

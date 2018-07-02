@@ -1,2 +1,9 @@
-<app-category-list></app-category-list>
-<app-product-list></app-product-list>
+<div class="wrapper">
+  <div class="menu" [class.menu_active]="displayCategoryList">
+    <a href="#" (click)="$event.preventDefault(); toggleList()" class="menu-btn" [class.menu-btn_active]="displayCategoryList"><span></span></a>
+    <app-category-list></app-category-list>
+  </div>
+  <div class="content" [class.content_active]="displayCategoryList">
+    <app-product-list></app-product-list>
+  </div>
+</div>

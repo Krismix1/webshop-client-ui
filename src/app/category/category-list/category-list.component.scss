@@ -5,11 +5,8 @@
 }
 
 .category-list {
-  height: 100vh;
-  min-width: 300px;
-  max-width: 350px;
+  height: 100%;
+  width: 100%;
   box-shadow: 10px 0 20px -3px rgba(0,0,0,0.3);
   box-sizing: border-box;
-  // TODO: Remove the float property
-  float: left; // Quick way to show the products to the right of category list
 }
