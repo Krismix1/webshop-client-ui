@@ -9,7 +9,8 @@
             placeholder="Email"
             formControlName="email"
             required/>
-          <mat-error *ngIf="loginForm.controls.email.errors?.required && loginForm.controls.email.touched">
+          <mat-error *ngIf="loginForm.controls.email.errors?.required &&
+            (loginForm.isSubmitted || loginForm.controls.email.dirty)">
             Email is <strong>required</strong>
           </mat-error>
         </mat-form-field>
@@ -25,7 +26,8 @@
             formControlName="password"
             required/>
           <mat-icon matTooltip="Show/hide password" matTooltipPosition="right" matSuffix (click)="hidePassword = !hidePassword">{{!hidePassword ? 'visibility' : 'visibility_off'}}</mat-icon>
-          <mat-error *ngIf="loginForm.controls.password.errors?.required && loginForm.controls.password.touched">
+          <mat-error *ngIf="loginForm.controls.password.errors?.required &&
+            (loginForm.isSubmitted || loginForm.controls.password.dirty)">
             Password is <strong>required</strong>
           </mat-error>
         </mat-form-field>

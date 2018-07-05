@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   readonly STATUS_NETWORK_ERROR = 4;
   readonly STATUS_CUSTOM_MESSAGE = 5;
 
-  loginForm: FormGroup;
+  loginForm;
   status: number = 0;
   hidePassword: boolean = true;
   message: String = ''
@@ -31,9 +31,12 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required]
     });
+    this.loginForm.statusChanges.subscribe(() => this.loginForm.isSubmitted = false)
   }
 
   onSubmitLogin(form) {
+    // TODO: See about creating a specific class and add isSubmitted property
+    form.isSubmitted = true
     if (!form.valid) {
       this.status = this.STATUS_INVALID_FORM;
       return;
