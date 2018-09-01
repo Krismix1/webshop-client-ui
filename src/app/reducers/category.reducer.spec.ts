@@ -5,7 +5,7 @@ import * as types from './../category/category.actions';
 
 describe('category reducers', () => {
 
-  it('should return the initial state', () => {
+  it('1. Should return the initial state', () => {
     expect(categoryReducer(undefined, {})).toEqual({
       categories: [],
       currentCategory: undefined,
@@ -13,7 +13,7 @@ describe('category reducers', () => {
     });
   });
 
-  it('Should add category', () => {
+  it('2. Should add category', () => {
     let stateBefore = {
       categories: [],
       currentCategory: undefined,
@@ -34,7 +34,7 @@ describe('category reducers', () => {
     })).toEqual(stateAfter);
   });
 
-  it('Should add 2 categories in row', () => {
+  it('3. Should add 2 categories in row', () => {
     let stateBefore = {
       categories: [],
       currentCategory: undefined,
