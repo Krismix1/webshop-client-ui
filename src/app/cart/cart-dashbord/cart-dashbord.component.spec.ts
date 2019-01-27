@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { CartDashbordComponent } from './cart-dashbord.component';
+import { CartDashbordComponent } from './cart-dashbord.component'
 
 describe('CartDashbordComponent', () => {
   // let component: CartDashbordComponent;
@@ -22,4 +22,4 @@ describe('CartDashbordComponent', () => {
   // it('should create', () => {
   //   expect(component).toBeTruthy();
   // });
-});
+})

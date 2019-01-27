@@ -1,6 +1,6 @@
-import { Component, OnInit, Injectable } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
-import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
+import { Component, OnInit, Injectable } from '@angular/core'
+import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl, FormGroupDirective, NgForm } from '@angular/forms'
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core'
 
 /** Error when invalid control is dirty, or mismatched. or submitted. */
 // From: https://github.com/angular/material2/issues/8513
@@ -11,9 +11,10 @@ export class MismatchErrorStateMatcher implements ErrorStateMatcher {
 
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     // const isSubmitted = form && form.submitted;
-    // return this.defaultMatcher.isErrorState(control, form) || (control && control.invalid && ((control.dirty && control.errors.mismatch) || isSubmitted));
-    const invalidParent = control && control.dirty && control.parent.invalid;
-    return this.defaultMatcher.isErrorState(control, form) || invalidParent;
+    // return this.defaultMatcher.isErrorState(control, form)
+    //  || (control && control.invalid && ((control.dirty && control.errors.mismatch) || isSubmitted));
+    const invalidParent = control && control.dirty && control.parent.invalid
+    return this.defaultMatcher.isErrorState(control, form) || invalidParent
   }
 }
 
@@ -24,9 +25,9 @@ export class MismatchErrorStateMatcher implements ErrorStateMatcher {
 })
 export class RegisterComponent implements OnInit {
 
-  registerForm;
-  hidePassword: boolean = true;
-  hideConfirmPassword: boolean = true;
+  registerForm
+  hidePassword = true
+  hideConfirmPassword = true
 
   constructor(private fb: FormBuilder, private matcher: MismatchErrorStateMatcher) { }
 
@@ -49,10 +50,10 @@ export class RegisterComponent implements OnInit {
     // TODO: See about creating a specific class and add isSubmitted property
     form.isSubmitted = true
     if (form.valid) {
-      console.log('valid form', form);
-      //send request
+      console.log('valid form', form)
+      // send request
     } else {
-      console.log('invalid form', form);
+      console.log('invalid form', form)
       // show feedback
     }
   }
@@ -63,10 +64,10 @@ export class RegisterComponent implements OnInit {
   // }
 
   matchValidator(control: AbstractControl): { [key: string]: any } | null {
-    const password = control.get('password');
-    const confirm = control.get('confirmPassword');
-    if (!password || !confirm) return null;
-    const match = password.value === confirm.value;
-    return match ? null : { mismatch: true };
+    const password = control.get('password')
+    const confirm = control.get('confirmPassword')
+    if (!password || !confirm) { return null }
+    const match = password.value === confirm.value
+    return match ? null : { mismatch: true }
   }
 }

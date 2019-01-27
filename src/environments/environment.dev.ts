@@ -7,4 +7,4 @@ export const environment = {
   clientService: 'http://localhost:8081',
   jwtClient: 'webshopclient',
   jwtSecret: 'mysecret'
-};
+}
