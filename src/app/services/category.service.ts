@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { Category } from '../entities/category';
-import { HttpClient } from '@angular/common/http';
-import { environment } from './../../environments/environment';
+import { Injectable } from '@angular/core'
+import { Category } from '../entities/category'
+import { HttpClient } from '@angular/common/http'
+import { environment } from './../../environments/environment'
 
 @Injectable()
 export class CategoryService {
@@ -10,6 +10,6 @@ export class CategoryService {
   constructor(private http: HttpClient) { }
 
   fetchCategories() {
-    return this.http.get<Category[]>(this._baseUrl);
+    return this.http.get<Category[]>(this._baseUrl)
   }
 }

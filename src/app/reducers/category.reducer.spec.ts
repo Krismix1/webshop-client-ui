@@ -1,7 +1,7 @@
-const deepFreeze = require('deep-freeze');
+const deepFreeze = require('deep-freeze')
 
-import { categoryReducer } from './category.reducer';
-import * as types from './../category/category.actions';
+import { categoryReducer } from './category.reducer'
+import * as types from './../category/category.actions'
 
 describe('category reducers', () => {
 
@@ -10,53 +10,53 @@ describe('category reducers', () => {
       categories: [],
       currentCategory: undefined,
       displayList: true
-    });
-  });
+    })
+  })
 
   it('2. Should add category', () => {
-    let stateBefore = {
+    const stateBefore = {
       categories: [],
       currentCategory: undefined,
       displayList: true
-    };
-    let category = {
-      name: "unit_test_category"
-    };
-    let stateAfter = {
+    }
+    const category = {
+      name: 'unit_test_category'
+    }
+    const stateAfter = {
       categories: [category],
       currentCategory: undefined,
       displayList: true
-    };
-    deepFreeze(stateBefore);
+    }
+    deepFreeze(stateBefore)
     expect(categoryReducer(stateBefore, {
       type: types.CategoryActions.ADD_CATEGORY,
       payload: category
-    })).toEqual(stateAfter);
-  });
+    })).toEqual(stateAfter)
+  })
 
   it('3. Should add 2 categories in row', () => {
     let stateBefore = {
       categories: [],
       currentCategory: undefined,
       displayList: true
-    };
-    let cat1 = { name: "unit_test_category_1" };
-    let cat2 = { name: "unit_test_category_2" };
-    deepFreeze(stateBefore);
+    }
+    const cat1 = { name: 'unit_test_category_1' }
+    const cat2 = { name: 'unit_test_category_2' }
+    deepFreeze(stateBefore)
 
-    let stateAfter = categoryReducer(stateBefore, {
+    const stateAfter = categoryReducer(stateBefore, {
       type: types.CategoryActions.ADD_CATEGORY,
       payload: cat1
-    });
+    })
 
     expect(stateAfter).toEqual({
       categories: [cat1],
       currentCategory: undefined,
       displayList: true
-    });
+    })
 
-    stateBefore = stateAfter;
-    deepFreeze(stateBefore);
+    stateBefore = stateAfter
+    deepFreeze(stateBefore)
 
     expect(categoryReducer(stateBefore, {
       type: types.CategoryActions.ADD_CATEGORY,
@@ -65,6 +65,6 @@ describe('category reducers', () => {
       categories: [cat1, cat2],
       currentCategory: undefined,
       displayList: true
-    });
-  });
-});
+    })
+  })
+})

@@ -1,6 +1,6 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing'
 
-import { ProductService } from './product.service';
+import { ProductService } from './product.service'
 
 describe('ProductService', () => {
   // beforeEach(() => {
@@ -12,4 +12,4 @@ describe('ProductService', () => {
   // it('should be created', inject([ProductService], (service: ProductService) => {
   //   expect(service).toBeTruthy();
   // }));
-});
+})

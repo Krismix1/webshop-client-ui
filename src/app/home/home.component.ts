@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { NgRedux } from '@angular-redux/store';
-import { IAppState } from '../store/store';
-import { CategoryActions } from '../category/category.actions';
+import { Component, OnInit } from '@angular/core'
+import { NgRedux } from '@angular-redux/store'
+import { IAppState } from '../store/store'
+import { CategoryActions } from '../category/category.actions'
 
 
 @Component({
@@ -11,7 +11,7 @@ import { CategoryActions } from '../category/category.actions';
 })
 export class HomeComponent implements OnInit {
 
-  displayCategoryList: boolean = true;
+  displayCategoryList = true
 
   constructor(private ngRedux: NgRedux<IAppState>, private categoryActions: CategoryActions) { }
 
@@ -21,6 +21,6 @@ export class HomeComponent implements OnInit {
   }
 
   toggleList() {
-    this.categoryActions.toggleCategoryList();
+    this.categoryActions.toggleCategoryList()
   }
 }

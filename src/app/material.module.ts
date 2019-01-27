@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { MatListModule, MatInputModule, MatToolbarModule, MatIconModule, MatFormFieldModule, MatButtonModule } from '@angular/material';
+import { NgModule } from '@angular/core'
+import { MatListModule, MatInputModule, MatToolbarModule, MatIconModule, MatFormFieldModule, MatButtonModule } from '@angular/material'
 
 @NgModule({
   imports: [

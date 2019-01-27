@@ -1,4 +1,4 @@
-import { Category } from './category';
+import { Category } from './category'
 
 export class Product {
 
@@ -7,41 +7,41 @@ export class Product {
   }
 
   get id(): number {
-    return this.id;
+    return this.id
   }
 
   set name(name: string) {
-    this.name = name;
+    this.name = name
   }
 
   get name(): string {
-    return this.name;
+    return this.name
   }
 
   set price(price: number) {
-    this.price = price;
+    this.price = price
   }
 
   get price(): number {
-    return this.price;
+    return this.price
   }
 
   // Set the URL for the image of the product
   set imageUri(url: string) {
-    this.imageUri = url;
+    this.imageUri = url
   }
 
   // Return the URL of the image of the product
   get imageUri(): string {
-    return this.imageUri;
+    return this.imageUri
   }
 
   set shortDescription(description: string) {
-    this.shortDescription = description;
+    this.shortDescription = description
   }
 
   get shortDescription(): string {
-    return this.shortDescription;
+    return this.shortDescription
   }
 
   set type(type: any) {
@@ -49,6 +49,6 @@ export class Product {
   }
 
   get type(): any {
-    return this.type;
+    return this.type
   }
 }

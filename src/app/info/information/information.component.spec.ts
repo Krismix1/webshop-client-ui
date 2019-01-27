@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { InformationComponent } from './information.component';
+import { InformationComponent } from './information.component'
 
 describe('InformationComponent', () => {
   // let component: InformationComponent;
@@ -22,4 +22,4 @@ describe('InformationComponent', () => {
   // it('should create', () => {
   //   expect(component).toBeTruthy();
   // });
-});
+})

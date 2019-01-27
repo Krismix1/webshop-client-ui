@@ -1,9 +1,9 @@
 export class Category {
   get name(): string {
-    return this.name;
+    return this.name
   }
 
   set name(name: string) {
-    this.name = name;
+    this.name = name
   }
 }

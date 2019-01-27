@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { CartItem } from './../../entities/cart-item';
-import { CartActions } from './../cart.actions';
+import { Component, OnInit, Input } from '@angular/core'
+import { CartItem } from './../../entities/cart-item'
+import { CartActions } from './../cart.actions'
 
 @Component({
   selector: 'app-cart-dashbord-item',
@@ -10,7 +10,7 @@ import { CartActions } from './../cart.actions';
 export class CartDashbordItemComponent implements OnInit {
 
   @Input()
-  private item: CartItem;
+  private item: CartItem
 
   constructor(private cartActions: CartActions) { }
 
@@ -18,10 +18,10 @@ export class CartDashbordItemComponent implements OnInit {
   }
 
   addItem() {
-    this.cartActions.addProduct(this.item.product);
+    this.cartActions.addProduct(this.item.product)
   }
 
   removeItem() {
-    this.cartActions.subtractProduct(this.item.product);
+    this.cartActions.subtractProduct(this.item.product)
   }
 }
