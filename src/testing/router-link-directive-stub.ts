@@ -1,20 +1,20 @@
 import { Directive, Input } from '@angular/core'
 
 // export for convenience.
-export { RouterLink} from '@angular/router'
+export { RouterLink } from '@angular/router'
 
 /* tslint:disable:directive-class-suffix */
 // #docregion router-link
 @Directive({
-  selector: '[routerLink]',
-  host: { '(click)': 'onClick()' }
+  selector: '[routerLink]', // tslint:disable-line:directive-selector
+  host: { '(click)': 'onClick()' } // tslint:disable-line:use-host-property-decorator
 })
 export class RouterLinkDirectiveStub {
-  @Input('routerLink') linkParams: any
+  @Input() routerLink: any
   navigatedTo: any = null
 
   onClick() {
-    this.navigatedTo = this.linkParams
+    this.navigatedTo = this.routerLink
   }
 }
 // #enddocregion router-link

@@ -1,5 +1,5 @@
 import { Injectable, Pipe, PipeTransform } from '@angular/core'
-import { Product } from './entities/product'
+import { Product } from './../entities/product'
 
 @Pipe({ name: 'filterProducts' })
 @Injectable()

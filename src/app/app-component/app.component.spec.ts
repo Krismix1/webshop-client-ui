@@ -1,8 +1,9 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing'
 // import { RouterTestingModule } from '@angular/router/testing';
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core'
+import { NO_ERRORS_SCHEMA } from '@angular/core'
 import { AppComponent } from './app.component'
-import { RouterLinkDirectiveStub } from './../testing/router-link-directive-stub'
+import { RouterLinkDirectiveStub } from './../../testing/router-link-directive-stub'
+import { MockNavComponent, SearchStubComponent, RouterOutletStubComponent } from './mocks'
 
 // info at https://angular.io/guide/testing#nested-component-tests
 describe('AppComponent', () => {
@@ -39,13 +40,3 @@ describe('AppComponent', () => {
   //   expect(appElement.textContent).toContain('Online Shop');
   // });
 })
-
-@Component({ selector: 'app-navbar', template: '' })
-class MockNavComponent { }
-
-@Component({ selector: 'app-search', template: '' })
-class SearchStubComponent { }
-
-// tslint:disable-next-line:component-selector
-@Component({ selector: 'router-outlet', template: '' })
-class RouterOutletStubComponent { }

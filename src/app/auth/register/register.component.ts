@@ -51,17 +51,12 @@ export class RegisterComponent implements OnInit {
     form.isSubmitted = true
     if (form.valid) {
       console.log('valid form', form)
-      // send request
+      // TODO: send request
     } else {
       console.log('invalid form', form)
-      // show feedback
+      // TODO: show feedback
     }
   }
-
-  // matchValidator(group: FormGroup): any {
-  //   return group.get('password').value === group.get('confirmPassword').value
-  //     ? null : { 'mismatch': true };
-  // }
 
   matchValidator(control: AbstractControl): { [key: string]: any } | null {
     const password = control.get('password')

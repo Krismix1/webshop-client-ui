@@ -10,7 +10,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 
 import { AppRoutingModule } from './app-routing.module'
 
-import { AppComponent } from './app.component'
+import { AppComponent } from './app-component/app.component'
 import { HomeComponent } from './home/home.component'
 import { NavbarComponent } from './navbar/navbar.component'
 import { SearchComponent } from './search/search.component'
@@ -34,7 +34,7 @@ import { CartEpic } from './epics/cart.epic'
 import { AuthService } from './services/auth.service'
 import { RegisterComponent } from './auth/register/register.component'
 // http interceptors
-import { httpInterceptorProviders } from './http-interceptors'
+import { httpInterceptorProviders } from './http-interceptors/index'
 // epic
 import { createEpicMiddleware, combineEpics } from 'redux-observable'
 import { createLogger } from 'redux-logger'
@@ -50,10 +50,11 @@ import { InformationComponent } from './info/information/information.component'
 import { FAQComponent } from './info/faq/faq.component'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 // search
-import { FilterProducts } from './products.filter'
+import { FilterProducts } from './filters/products.filter'
 // environment
 import { environment } from './../environments/environment'
-import { EqualValidator } from './directives/equal-validator.directive'
+// custom form utilities
+// import { EqualValidator } from './directives/equal-validator.directive'
 // errors
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material'
 import { MismatchErrorStateMatcher } from './auth/register/register.component'
@@ -79,7 +80,7 @@ import { MismatchErrorStateMatcher } from './auth/register/register.component'
     PageNotFoundComponent,
     FilterProducts,
     RegisterComponent,
-    EqualValidator
+    // EqualValidator
   ],
   imports: [
     BrowserModule,

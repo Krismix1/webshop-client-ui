@@ -146,7 +146,8 @@ describe('AuthService', () => {
     // Assert that the request is a POST.
     expect(authReq.request.method).toEqual('POST')
     expect(authReq.request.headers.has('Authorization')).toBeTruthy('Post request has Authorization header')
-    expect(authReq.request.headers.get('authorization')).toEqual(`Basic ${btoa('webshopclient:mysecret')}`)
+    const basicToken = btoa(`${environment.jwtClient}:${environment.jwtSecret}`)
+    expect(authReq.request.headers.get('authorization')).toEqual(`Basic ${basicToken}`)
 
     // Respond with mock data, causing Observable to resolve.
     // Subscribe callback asserts that correct data was returned.

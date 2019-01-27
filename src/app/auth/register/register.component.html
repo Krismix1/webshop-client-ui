@@ -30,7 +30,7 @@
               required/>
             <mat-icon matTooltip="Show/hide password" matTooltipPosition="right" matSuffix (click)="hidePassword = !hidePassword">{{!hidePassword ? 'visibility' : 'visibility_off'}}</mat-icon>
             <mat-hint align="start">Minimum 4 characters</mat-hint>
-            <mat-hint align="end">{{passwordInput.value?.length || 0}}/4</mat-hint>
+            <mat-hint align="end" *ngIf="passwordInput.value?.length < 4">{{passwordInput.value?.length || 0}}/4</mat-hint>
             <mat-error
               *ngIf="registerForm.controls.passwords.controls.password.errors?.required &&
                 (registerForm.isSubmitted || registerForm.controls.passwords.controls.password.dirty)">
