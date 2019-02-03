@@ -1,12 +1,6 @@
 import { Injectable } from '@angular/core'
-import { Observable } from 'rxjs/Observable'
-import { ErrorObservable } from 'rxjs/observable/ErrorObservable'
+import { Observable ,  throwError as _throw } from 'rxjs' // tslint:disable-line
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
-import 'rxjs/add/observable/of'
-import 'rxjs/add/operator/shareReplay'
-import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/catch'
-import { _throw } from 'rxjs/observable/throw'
 import { TokenStorageService } from './../auth/token-storage.service'
 import { AccessToken } from './../entities/access-token'
 import { Account } from './../entities/account'

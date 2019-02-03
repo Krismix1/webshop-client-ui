@@ -56,6 +56,7 @@ import { environment } from './../environments/environment'
 // errors
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material'
 import { MismatchErrorStateMatcher } from './auth/register/register.component'
+import { createStore, applyMiddleware } from 'redux';
 
 @NgModule({
   declarations: [
@@ -118,11 +119,13 @@ export class AppModule {
     // Middleware
     // http://redux.js.org/docs/advanced/Middleware.html
     // https://github.com/angular-redux/store/blob/master/articles/epics.md
-    // const epicMiddleware = createEpicMiddleware(rootEpic);
+    const epicMiddleware = createEpicMiddleware()
+    const store = createStore(rootReducer, applyMiddleware(epicMiddleware))
+
+    epicMiddleware.run(rootEpic)
     const middleware = [
-      createEpicMiddleware(rootEpic), createLogger({ level: 'info', collapsed: true })
+      epicMiddleware, createLogger({ level: 'info', collapsed: true })
     ]
-    // this.ngRedux.configureStore(rootReducer, {}, middleware);
 
 
     this.ngRedux.configureStore(rootReducer, {}, middleware, enhancers)

@@ -2,12 +2,9 @@ import { Injectable } from '@angular/core'
 import { CartActions } from './../cart/cart.actions'
 import { CartItem } from './../entities/cart-item'
 import { HttpClient } from '@angular/common/http'
-import { Response } from '@angular/http'
 import { AuthService } from './auth.service'
-
-import 'rxjs/add/observable/from'
-import { Observable } from 'rxjs/Observable'
 import { environment } from './../../environments/environment'
+import { of } from 'rxjs'
 
 @Injectable()
 export class StorageService {
@@ -19,7 +16,7 @@ export class StorageService {
   getCartItems() {
     if (this.authService.isLoggedIn()) {
       // FIXME: retrieve data based on username
-      return Observable.from([])
+      return of([])
     } else {
       // retrieve data based on token
       let storedItemsKey = localStorage.getItem(StorageService.USER_KEY)
@@ -31,10 +28,10 @@ export class StorageService {
         })
         // because key was not present
         // then we cannot restore any previous items
-        return Observable.from([])
+        return of([])
       } else {
         // retrieve items based on key
-        return Observable.from(this.http.get<CartItem[]>(this._baseUrl + `/cart/${storedItemsKey}/items`))
+        return this.http.get<CartItem[]>(this._baseUrl + `/cart/${storedItemsKey}/items`)
       }
     }
   }
@@ -48,7 +45,7 @@ export class StorageService {
       return this.http.put(`${this._baseUrl}/cart/${storedItemsKey}`, { items: mappedItems, registeredAt: new Date().valueOf() })
     } else {
       console.error('No user key stored')
-      return Observable.of()
+      return of()
     }
   }
 }
