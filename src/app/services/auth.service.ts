@@ -9,7 +9,7 @@ import 'rxjs/add/operator/catch'
 import { _throw } from 'rxjs/observable/throw'
 import { TokenStorageService } from './../auth/token-storage.service'
 import { AccessToken } from './../entities/access-token'
-import { Principal } from './../entities/principal'
+import { Account } from './../entities/account'
 import { environment } from './../../environments/environment'
 
 @Injectable()
@@ -17,19 +17,31 @@ export class AuthService {
 
   redirectUrl: string
   private readonly _baseUrl = `${environment.authService}`
-  private user: Principal
+  private user: Account
 
   constructor(private httpClient: HttpClient, private tokenStorage: TokenStorageService) { }
 
   isLoggedIn(): boolean {
     const token = this.tokenStorage.getToken()
-    return Boolean(token)
+    if (!token) {
+      return false
+    }
+    // check if token is still valid
+    const tokenDate = this.tokenStorage.getTimestamp().valueOf()
+    const currDate = new Date().valueOf()
+    const elapsed = (currDate - tokenDate) / 1000
+    return elapsed < token.expires_in
   }
+
+  logout(): void {
+    this.tokenStorage.clean()
+  }
+
+  // TODO: Add support to refresh token
 
   login(username: string, password: string): Observable<any> {
     const formData = new FormData()
-    formData.append('grant_type', 'password', )
-    formData.append('scope', 'webclient')
+    formData.append('grant_type', 'password')
     formData.append('username', username)
     formData.append('password', password)
     const basicAuth = btoa(`${environment.jwtClient}:${environment.jwtSecret}`)
@@ -38,24 +50,19 @@ export class AuthService {
         'authorization': `Basic ${basicAuth}`
       }
     }).shareReplay().map(result => {
-      console.log(result)
       if (result && result.access_token) {
-        this.tokenStorage.saveToken(result.access_token)
+        this.tokenStorage.save(result)
         // Create a new request to retrieve the roles of the user
-        this.httpClient.get<Principal>(`${this._baseUrl}/user`).
+        this.httpClient.get<Account>(`${this._baseUrl}/user`).
           subscribe(res => {
             this.user = res
           })
         return true
       } else {
-        console.log('DEBUG', {'debug': result})
+        console.log({ debug: result })
         return _throw('No access token received.')
       }
     }).catch(this.handleError)
-  }
-
-  logout(): void {
-    this.tokenStorage.discardToken()
   }
 
   private handleError(error: HttpErrorResponse): ErrorObservable {

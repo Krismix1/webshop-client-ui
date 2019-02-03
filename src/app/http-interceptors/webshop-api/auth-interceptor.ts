@@ -21,11 +21,9 @@ export class AuthInterceptor implements HttpInterceptor {
     } else {
       const token = this.tokenStorageService.getToken()
       if (token) {
-        const headers: HttpHeaders = new HttpHeaders({
-          TOKEN_HEADER_KEY: `Bearer ${token}`
-        })
-        req = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, `Bearer ${token}`) })
-        console.log(req.headers)
+        req = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, `Bearer ${token.access_token}`) })
+        // TODO: Is it bad that we mutate the request directly?
+        req.headers.set(TOKEN_HEADER_KEY, `Bearer ${token}`)
       }
     }
     return next.handle(req).do(
