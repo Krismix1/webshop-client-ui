@@ -16,7 +16,6 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private tokenStorageService: TokenStorageService, private router: Router) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log('auth')
     if ((req.url.toLowerCase().includes('oauth/token') && req.method.toLowerCase() === 'post')) {
     } else {
       const token = this.tokenStorageService.getToken()

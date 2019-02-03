@@ -17,7 +17,6 @@ export class ContentTypeInterceptor implements HttpInterceptor {
   constructor(private tokenStorageService: TokenStorageService, private router: Router) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log('content type')
     // TODO: Filter which requests should be modified
     // TODO: Is it bad that we mutate the request directly?
     req.headers.set(ACCEPT_HEADER, APPLICATION_JSON_MIME_TYPE)

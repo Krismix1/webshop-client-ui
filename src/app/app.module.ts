@@ -53,8 +53,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { FilterProducts } from './filters/products.filter'
 // environment
 import { environment } from './../environments/environment'
-// custom form utilities
-// import { EqualValidator } from './directives/equal-validator.directive'
 // errors
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material'
 import { MismatchErrorStateMatcher } from './auth/register/register.component'
@@ -79,8 +77,7 @@ import { MismatchErrorStateMatcher } from './auth/register/register.component'
     FAQComponent,
     PageNotFoundComponent,
     FilterProducts,
-    RegisterComponent,
-    // EqualValidator
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +93,7 @@ import { MismatchErrorStateMatcher } from './auth/register/register.component'
   ],
   providers: [AnonymousGuard, AuthGuard, ProductService, CategoryService,
     StorageService, AuthService, CategoryActions, ProductActions, CartActions,
-    CartEpic, TokenStorageService, httpInterceptorProviders, {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
+    CartEpic, TokenStorageService, httpInterceptorProviders, { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
     MismatchErrorStateMatcher],
   bootstrap: [AppComponent]
 })
@@ -111,8 +108,7 @@ export class AppModule {
     // ... add whatever other enhancers are needed.
 
     // You probably only want to expose this tool in devMode.
-    const __DEVMODE__ = environment.dev
-    if (__DEVMODE__ && devTools.isEnabled()) {
+    if (environment.dev && devTools.isEnabled()) {
       enhancers = [...enhancers, devTools.enhancer()]
     }
 

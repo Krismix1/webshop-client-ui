@@ -11,12 +11,12 @@ import { MatListModule, MatInputModule, MatToolbarModule, MatIconModule, MatForm
     MatButtonModule
   ],
   exports: [
-      MatListModule,
-      MatInputModule,
-      MatToolbarModule,
-      MatIconModule,
-      MatFormFieldModule,
-      MatButtonModule
+    MatListModule,
+    MatInputModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatButtonModule
   ]
 })
 export class MaterialModule { }
