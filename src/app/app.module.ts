@@ -56,7 +56,7 @@ import { environment } from './../environments/environment'
 // errors
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material'
 import { MismatchErrorStateMatcher } from './auth/register/register.component'
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from 'redux'
 
 @NgModule({
   declarations: [
@@ -105,30 +105,29 @@ export class AppModule {
     private ngReduxRouter: NgReduxRouter,
     private cartEpic: CartEpic) {
 
-    let enhancers = []
-    // ... add whatever other enhancers are needed.
-
-    // You probably only want to expose this tool in devMode.
-    if (environment.dev && devTools.isEnabled()) {
-      enhancers = [...enhancers, devTools.enhancer()]
-    }
-
-    const rootEpic = combineEpics(
-      this.cartEpic.getItems, this.cartEpic.saveItems
-    )
     // Middleware
     // http://redux.js.org/docs/advanced/Middleware.html
     // https://github.com/angular-redux/store/blob/master/articles/epics.md
     const epicMiddleware = createEpicMiddleware()
     const store = createStore(rootReducer, applyMiddleware(epicMiddleware))
 
+    const rootEpic = combineEpics(
+      this.cartEpic.getItems, this.cartEpic.saveItems
+    )
     epicMiddleware.run(rootEpic)
     const middleware = [
       epicMiddleware, createLogger({ level: 'info', collapsed: true })
     ]
 
-
-    this.ngRedux.configureStore(rootReducer, {}, middleware, enhancers)
+    let enhancers = []
+    // ... add whatever other enhancers are needed.
+    // You probably only want to expose this tool in devMode.
+    if (environment.dev && devTools.isEnabled()) {
+      enhancers = [...enhancers, devTools.enhancer()]
+    }
+    const initialState = {}
+    // this.ngRedux.configureStore(rootReducer, initialState, middleware, enhancers)
+    this.ngRedux.provideStore(store)
 
     ngReduxRouter.initialize(/* args */)
   }

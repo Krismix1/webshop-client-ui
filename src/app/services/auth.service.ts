@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core'
-import { Observable ,  throwError as _throw } from 'rxjs' // tslint:disable-line
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { TokenStorageService } from './../auth/token-storage.service'
 import { AccessToken } from './../entities/access-token'
 import { Account } from './../entities/account'
 import { environment } from './../../environments/environment'
+import { Observable , throwError } from 'rxjs'
+import { shareReplay, map, catchError } from 'rxjs/operators'
 
 @Injectable()
 export class AuthService {
@@ -43,23 +44,28 @@ export class AuthService {
       headers: {
         'authorization': `Basic ${basicAuth}`
       }
-    }).shareReplay().map(result => {
-      if (result && result.access_token) {
-        this.tokenStorage.save(result)
-        // Create a new request to retrieve the roles of the user
-        this.httpClient.get<Account>(`${this._baseUrl}/user`).
-          subscribe(res => {
-            this.user = res
-          })
-        return true
-      } else {
-        console.log({ debug: result })
-        return _throw('No access token received.')
-      }
-    }).catch(this.handleError)
+    })
+    .pipe(
+      shareReplay(),
+      map(result => {
+        if (result && result.access_token) {
+          this.tokenStorage.save(result)
+          // Create a new request to retrieve the roles of the user
+          this.httpClient.get<Account>(`${this._baseUrl}/user`).
+            subscribe(res => {
+              this.user = res
+            })
+          return true
+        } else {
+          console.log({ debug: result })
+          return throwError('No access token received.')
+        }
+      }),
+    catchError(this.handleError)
+    )
   }
 
-  private handleError(error: HttpErrorResponse): ErrorObservable {
+  private handleError(error: HttpErrorResponse): Observable<never> {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An client-side or network error occurred:', JSON.stringify(error))
@@ -68,9 +74,9 @@ export class AuthService {
       // The response body may contain clues as to what went wrong,
       switch (error.status) {
         case 0:
-          return _throw('No connection with the server.')
+          return throwError('No connection with the server.')
         case 401:
-          return _throw('Invalid credentials.')
+          return throwError('Invalid credentials.')
         default:
           console.warn('Error status not handled')
           break
@@ -79,6 +85,6 @@ export class AuthService {
         `body was: ${JSON.stringify(error)}`)
     }
     // return an observable with a user-facing error message
-    return _throw('Something bad happened. Please try again later.')
+    return throwError('Something bad happened. Please try again later.')
   }
 }

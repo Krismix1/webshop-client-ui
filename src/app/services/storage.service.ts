@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core'
-import { CartActions } from './../cart/cart.actions'
 import { CartItem } from './../entities/cart-item'
 import { HttpClient } from '@angular/common/http'
 import { AuthService } from './auth.service'
@@ -11,7 +10,7 @@ export class StorageService {
 
   static readonly USER_KEY = 'USER_KEY'
   private _baseUrl = `${environment.clientService}/api`
-  constructor(private cartActions: CartActions, private http: HttpClient, private authService: AuthService) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   getCartItems() {
     if (this.authService.isLoggedIn()) {
@@ -19,12 +18,13 @@ export class StorageService {
       return of([])
     } else {
       // retrieve data based on token
-      let storedItemsKey = localStorage.getItem(StorageService.USER_KEY)
-      if (storedItemsKey === null) { // no key saved
+      const storedItemsKey = localStorage.getItem(StorageService.USER_KEY)
+      if (!storedItemsKey) { // no key saved
         // request a new key
+        // TODO: Don't use a GET request, because the handler creates new data
+        // But get requests should be repeatable
         this.http.get<any>(this._baseUrl + '/users/anonymous/key').subscribe(data => {
-          storedItemsKey = data.key
-          localStorage.setItem(StorageService.USER_KEY, storedItemsKey)
+          localStorage.setItem(StorageService.USER_KEY, data.key)
         })
         // because key was not present
         // then we cannot restore any previous items
@@ -38,13 +38,11 @@ export class StorageService {
 
   saveItems(items: CartItem[]) {
     const storedItemsKey = localStorage.getItem(StorageService.USER_KEY)
-    if (storedItemsKey !== null) {
-      const mappedItems = items.map(item => {
-        return { quantity: item.quantity, product: item.product.id }
-      })
-      return this.http.put(`${this._baseUrl}/cart/${storedItemsKey}`, { items: mappedItems, registeredAt: new Date().valueOf() })
+    if (storedItemsKey) {
+      const mappedItems = items.map(item => ({ quantity: item.quantity, product: item.product.id }))
+      return this.http.put(`${this._baseUrl}/cart/${storedItemsKey}`, { items: mappedItems })
     } else {
-      console.error('No user key stored')
+      console.error('No key present. Can\'t save items')
       return of()
     }
   }

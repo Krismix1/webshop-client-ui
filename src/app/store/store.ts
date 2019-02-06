@@ -27,6 +27,7 @@ export class IAppState {
   category?: CategoryState
   product?: ProductState
   cart?: CartState
+  router?: any
 }
 
 export const rootReducer = combineReducers<IAppState>({

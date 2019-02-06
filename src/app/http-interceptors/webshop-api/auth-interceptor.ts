@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import {
-  HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse, HttpEvent
+  HttpInterceptor, HttpRequest, HttpHandler, HttpEvent,
 } from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { Router } from '@angular/router'
@@ -23,14 +23,6 @@ export class AuthInterceptor implements HttpInterceptor {
         req.headers.set(TOKEN_HEADER_KEY, `Bearer ${token}`)
       }
     }
-    return next.handle(req).do(
-      (err: any) => {
-        if (err instanceof HttpErrorResponse) {
-          if (err.status === 401) {
-            this.router.navigate(['error'])
-          }
-        }
-      }
-    )
+    return next.handle(req)
   }
 }

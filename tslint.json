@@ -2,6 +2,11 @@
   "rulesDirectory": [
     "node_modules/codelyzer"
   ],
+  "linterOptions": {
+    "exclude": [
+      "node_modules/**"
+    ]
+  },
   "rules": {
     "arrow-return-shorthand": true,
     "callable-types": true,
@@ -17,7 +22,7 @@
     "eofline": true,
     "forin": true,
     "import-blacklist": [
-      true,
+      true
     ],
     "import-spacing": true,
     "indent": [
