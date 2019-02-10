@@ -40,9 +40,8 @@ describe('AuthService', () => {
   let authService: AuthService
   let tokenStorageServiceSpy: jasmine.SpyObj<TokenStorageService>
 
-  let httpClient: HttpClient
   let httpTestingController: HttpTestingController
-  let _baseUrl: String
+  let _baseUrl: String // tslint:disable-line
   let mockRouter: jasmine.SpyObj<Router>
 
   beforeEach(() => {
@@ -63,7 +62,6 @@ describe('AuthService', () => {
     authService = TestBed.get(AuthService)
     tokenStorageServiceSpy = TestBed.get(TokenStorageService)
 
-    httpClient = TestBed.get(HttpClient)
     httpTestingController = TestBed.get(HttpTestingController)
 
     mockRouter = TestBed.get(Router)
@@ -234,13 +232,13 @@ describe('AuthService', () => {
 
   it('8. Can handle network errors', async(() => {
     // TODO: not finished, right now it only checks network error, but not api errors
-    tokenStorageServiceSpy.save.and.callFake((value) => {
+    tokenStorageServiceSpy.save.and.callFake((value: AccessToken) => {
       tokenStorageServiceSpy.getToken.and.returnValue(value)
     })
 
     authService.login('test username', 'test password')
       .subscribe(
-        data => fail('should have failed with the network error'),
+        () => fail('should have failed with the network error'),
         error => {
           expect(error).toEqual('No connection with the server.', 'message')
         }
@@ -250,9 +248,9 @@ describe('AuthService', () => {
 
     // Create mock ErrorEvent, raised when something goes wrong at the network level.
     // Connection timeout, DNS error, offline, etc
-    const err_msg = 'simulated network error'
+    const errMsg = 'simulated network error'
     const mockError = new ErrorEvent('Network error', {
-      message: err_msg,
+      message: errMsg,
     })
 
     // Respond with mock error

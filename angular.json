@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "webshop-client-ui": {
+    "webshop-client": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/webshop-client-ui",
+            "outputPath": "dist/webshop-client",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -70,21 +70,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "webshop-client-ui:build"
+            "browserTarget": "webshop-client:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "webshop-client-ui:build:production"
+              "browserTarget": "webshop-client:build:production"
             },
             "dev": {
-              "browserTarget": "webshop-client-ui:build:dev"
+              "browserTarget": "webshop-client:build:dev"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "webshop-client-ui:build"
+            "browserTarget": "webshop-client:build"
           }
         },
         "test": {
@@ -118,7 +118,7 @@
         }
       }
     },
-    "webshop-client-ui-e2e": {
+    "webshop-client-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -127,11 +127,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "webshop-client-ui:serve"
+            "devServerTarget": "webshop-client:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "webshop-client-ui:serve:production"
+              "devServerTarget": "webshop-client:serve:production"
             }
           }
         },
@@ -147,5 +147,5 @@
       }
     }
   },
-  "defaultProject": "webshop-client-ui"
+  "defaultProject": "webshop-client"
 }

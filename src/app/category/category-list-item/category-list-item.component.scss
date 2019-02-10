@@ -13,6 +13,6 @@ $backgroundColor: #48cfad;
 }
 
 .active {
-  background: $backgroundColor * 1.15;
+  background: lighten($backgroundColor, 15);
   font-style: italic;
 }

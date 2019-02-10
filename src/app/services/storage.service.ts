@@ -38,7 +38,7 @@ export class StorageService {
 
   saveItems(items: CartItem[]) {
     const storedItemsKey = localStorage.getItem(StorageService.USER_KEY)
-    if (storedItemsKey) {
+    if (!storedItemsKey) {
       const mappedItems = items.map(item => ({ quantity: item.quantity, product: item.product.id }))
       return this.http.put(`${this._baseUrl}/cart/${storedItemsKey}`, { items: mappedItems })
     } else {
