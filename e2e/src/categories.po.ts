@@ -1,5 +1,4 @@
-import { browser, by, element, $$, ElementArrayFinder } from 'protractor'
-import { Category } from '../src/app/entities/category'
+import { browser, $$, ElementArrayFinder } from 'protractor'
 
 export class CategoriesPage {
   navigateTo() {

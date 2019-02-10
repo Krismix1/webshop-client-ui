@@ -1,13 +1,11 @@
 import { AppPage } from './app.po'
-import { browser, $, $$ } from 'protractor'
+import { browser, $$ } from 'protractor'
 import { CategoriesPage } from './categories.po'
 
 describe('webshop-client App', () => {
-  let page: AppPage
   let categoriesPage: CategoriesPage
 
   beforeEach(() => {
-    page = new AppPage()
     categoriesPage = new CategoriesPage()
   })
 

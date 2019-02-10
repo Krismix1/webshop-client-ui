@@ -1,5 +1,5 @@
 import { TestBed, async } from '@angular/core/testing'
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs'
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
 
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
@@ -67,7 +67,7 @@ describe('AuthService', () => {
     httpTestingController = TestBed.get(HttpTestingController)
 
     mockRouter = TestBed.get(Router)
-    mockRouter.navigate.and.callFake((value) => {
+    mockRouter.navigate.and.callFake((value: string) => {
       console.log(`Router navigate called with value: ${value}`)
     })
   })
@@ -134,8 +134,8 @@ describe('AuthService', () => {
 
   it('6. Should login', async(() => {
     // TODO: More on https://angular.io/guide/http#testing-http-requests : Testing for errors
-    let stubValue
-    tokenStorageServiceSpy.save.and.callFake((value) => {
+    let stubValue: AccessToken
+    tokenStorageServiceSpy.save.and.callFake((value: AccessToken) => {
       stubValue = value
       tokenStorageServiceSpy.getToken.and.returnValue(stubValue)
     })

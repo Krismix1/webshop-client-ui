@@ -5,10 +5,9 @@ import { MaterialModule } from './../../material.module'
 import { Router } from '@angular/router'
 import { AuthService } from './../../services/auth.service'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { Observable } from 'rxjs/Observable'
+import { throwError, of } from 'rxjs'
 import 'rxjs/add/observable/of'
 import { delay } from 'rxjs/operators'
-import { _throw } from 'rxjs/observable/throw'
 
 import { LoginComponent } from './login.component'
 import { LoginPage } from './login.po'
@@ -106,7 +105,7 @@ describe('LoginComponent', () => {
   })
 
   it('9. Should change status to sending request and call service when form is valid', () => {
-    authService.login.and.returnValue(Observable.of(true).pipe(delay(3000)))
+    authService.login.and.returnValue(of(true).pipe(delay(3000)))
     component.loginForm.controls.email.setValue('a')
     component.loginForm.controls.password.setValue('pass')
     component.onSubmitLogin(component.loginForm)
@@ -116,7 +115,7 @@ describe('LoginComponent', () => {
   })
 
   it('10. Should change status to login success on succesful login and redirect to \'home\' if no URL specified', () => {
-    authService.login.and.returnValue(Observable.of(true))
+    authService.login.and.returnValue(of(true))
     component.loginForm.controls.email.setValue('a')
     component.loginForm.controls.password.setValue('pass')
     component.onSubmitLogin(component.loginForm)
@@ -126,7 +125,7 @@ describe('LoginComponent', () => {
   })
 
   it('11. Should change status to login success on succesful login and redirect to specified URL', () => {
-    authService.login.and.returnValue(Observable.of(true))
+    authService.login.and.returnValue(of(true))
     fixture.debugElement.injector.get(AuthService).redirectUrl = 'testUrl'
     component.loginForm.controls.email.setValue('a')
     component.loginForm.controls.password.setValue('pass')
@@ -135,8 +134,8 @@ describe('LoginComponent', () => {
   })
 
   it('12. Should show invalid credentials message after login', () => {
-    const msg: String = 'Test Error Invalid credentials'
-    authService.login.and.returnValue(_throw(msg))
+    const msg = 'Test Error Invalid credentials'
+    authService.login.and.returnValue(throwError(msg))
     component.loginForm.controls.email.setValue('a')
     component.loginForm.controls.password.setValue('pass')
     component.onSubmitLogin(component.loginForm)
@@ -145,8 +144,8 @@ describe('LoginComponent', () => {
   })
 
   it('13. Should show network error message after login', () => {
-    const msg: String = 'Test Network error'
-    authService.login.and.returnValue(_throw(msg))
+    const msg = 'Test Network error'
+    authService.login.and.returnValue(throwError(msg))
     component.loginForm.controls.email.setValue('a')
     component.loginForm.controls.password.setValue('pass')
     component.onSubmitLogin(component.loginForm)
@@ -279,7 +278,7 @@ describe('LoginComponent', () => {
   })
 
   it('21. Should show custom error message when service fails', () => {
-    const msg: String = 'Typical service error'
+    const msg = 'Typical service error'
     component.message = msg
     component.status = component.STATUS_CUSTOM_MESSAGE
     fixture.detectChanges()
