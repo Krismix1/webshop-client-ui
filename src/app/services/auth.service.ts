@@ -11,12 +11,12 @@ import { shareReplay, map, catchError } from 'rxjs/operators'
 export class AuthService {
 
   redirectUrl: string
-  private readonly _baseUrl = `${environment.authService}`
+  private readonly BASE_URL = `${environment.authService}`
   private user: Account
 
-  constructor(private httpClient: HttpClient, private tokenStorage: TokenStorageService) { }
+  constructor (private httpClient: HttpClient, private tokenStorage: TokenStorageService) { }
 
-  isLoggedIn(): boolean {
+  isLoggedIn (): boolean {
     const token = this.tokenStorage.getToken()
     if (!token) {
       return false
@@ -28,21 +28,21 @@ export class AuthService {
     return elapsed < token.expires_in
   }
 
-  logout(): void {
+  logout (): void {
     this.tokenStorage.clean()
   }
 
   // TODO: Add support to refresh token
 
-  login(username: string, password: string): Observable<any> {
+  login (username: string, password: string): Observable<any> {
     const formData = new FormData()
     formData.append('grant_type', 'password')
     formData.append('username', username)
     formData.append('password', password)
     const basicAuth = btoa(`${environment.jwtClient}:${environment.jwtSecret}`)
-    return this.httpClient.post<AccessToken>(`${this._baseUrl}/oauth/token`, formData, {
+    return this.httpClient.post<AccessToken>(`${this.BASE_URL}/oauth/token`, formData, {
       headers: {
-        'authorization': `Basic ${basicAuth}`
+        authorization: `Basic ${basicAuth}`
       }
     })
     .pipe(
@@ -51,7 +51,7 @@ export class AuthService {
         if (result && result.access_token) {
           this.tokenStorage.save(result)
           // Create a new request to retrieve the roles of the user
-          this.httpClient.get<Account>(`${this._baseUrl}/user`).
+          this.httpClient.get<Account>(`${this.BASE_URL}/user`).
             subscribe(res => {
               this.user = res
             })
@@ -65,7 +65,7 @@ export class AuthService {
     )
   }
 
-  private handleError(error: HttpErrorResponse): Observable<never> {
+  private handleError (error: HttpErrorResponse): Observable<never> {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An client-side or network error occurred:', JSON.stringify(error))

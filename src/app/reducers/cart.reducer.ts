@@ -5,7 +5,7 @@ import { tassign } from 'tassign'
 
 const INITIAL_STATE: CartState = { items: [], initialized: false }
 
-export function cartReducer(state: CartState = INITIAL_STATE, action: any) {
+export function cartReducer (state: CartState = INITIAL_STATE, action: any) {
   switch (action.type) {
     case CartActions.PUT_PRODUCT:
       // search the current state of the cart

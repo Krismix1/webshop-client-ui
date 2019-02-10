@@ -1,8 +1,6 @@
 import { TestBed, async } from '@angular/core/testing'
-import { Observable } from 'rxjs'
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
 
-import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { TokenStorageService } from './../auth/token-storage.service'
 
 import { AuthService } from './auth.service'
@@ -16,15 +14,16 @@ import { Router } from '@angular/router'
 
 // mock class that allows for arbitrary fields, so that we are using Typescript correctly
 class MockAccessToken {
-  public access_token?: string
-  public expires_in?: number // expiration time in seconds
+  public access_token?: string // tslint:disable-line
+  // expiration time in seconds
+  public expires_in?: number // tslint:disable-line
   public jti?: string
-  public refresh_token?: string
+  public refresh_token?: string // tslint:disable-line
   public scope?: string
-  public token_type?: string
+  public token_type?: string // tslint:disable-line
 }
 
-function createStubToken(value: MockAccessToken = {}): AccessToken {
+function createStubToken (value: MockAccessToken = {}): AccessToken {
   return {...{
     access_token: '',
     expires_in: 30,
@@ -196,7 +195,7 @@ describe('AuthService', () => {
   }))
 
   it('7. Should manage to logout after a login', async(() => {
-    tokenStorageServiceSpy.save.and.callFake((value) => {
+    tokenStorageServiceSpy.save.and.callFake((value: any) => {
       tokenStorageServiceSpy.getToken.and.returnValue(value)
     })
     tokenStorageServiceSpy.clean.and.callFake(() => {

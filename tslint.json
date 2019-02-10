@@ -74,6 +74,28 @@
     "semicolon": [
       true,
       "never"
-    ]
+    ],
+    "comment-format": [true, "check-space"],
+    "encoding": true,
+    "no-boolean-literal-compare": true,
+    "no-angle-bracket-type-assertion": true,
+    "no-unnecessary-callback-wrapper": true,
+    "object-literal-shorthand": true,
+    "prefer-object-spread": true,
+    "no-for-in-array": true,
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-module",
+      "check-separator",
+      "check-rest-spread",
+      "check-type",
+      "check-typecast",
+      "check-type-operator",
+      "check-preblock"
+    ],
+    "space-before-function-paren": [true, "always"]
   }
 }

@@ -11,9 +11,9 @@ const APPLICATION_JSON_MIME_TYPE = 'application/json'
 @Injectable()
 export class ContentTypeInterceptor implements HttpInterceptor {
 
-  constructor() { }
+  constructor () { }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept (req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // TODO: Filter which requests should be modified
     // TODO: Is it bad that we mutate the request directly?
     req.headers.set(ACCEPT_HEADER, APPLICATION_JSON_MIME_TYPE)

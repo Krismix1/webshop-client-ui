@@ -6,10 +6,10 @@ import { environment } from './../../environments/environment'
 @Injectable()
 export class CategoryService {
 
-  private _baseUrl = `${environment.managementService}/api/categories`
-  constructor(private http: HttpClient) { }
+  private readonly BASE_URL = `${environment.managementService}/api/categories`
+  constructor (private http: HttpClient) { }
 
-  fetchCategories() {
-    return this.http.get<Category[]>(this._baseUrl)
+  fetchCategories () {
+    return this.http.get<Category[]>(this.BASE_URL)
   }
 }

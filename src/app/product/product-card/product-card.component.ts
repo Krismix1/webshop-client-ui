@@ -13,25 +13,25 @@ export class ProductCardComponent implements OnInit {
   @Output() descriptionClicked = new EventEmitter()
 
   @Input() product: Product
-  constructor(private cartActions: CartActions, private router: Router) { }
+  constructor (private cartActions: CartActions, private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit () {
   }
 
-  onCartIconClicked() {
+  onCartIconClicked () {
     this.cartActions.addProduct(this.product)
   }
 
-  productClicked() {
+  productClicked () {
     this.router.navigate(['product', this.product.id])
   }
 
-  onDescriptionClicked() {
+  onDescriptionClicked () {
     console.log(`Dispatching action with payload ${this.product.shortDescription}`)
     this.descriptionClicked.emit(this.product.shortDescription)
   }
 
-  receiveEvent(data) {
+  receiveEvent (data) {
     console.log(`Loooooooooool`)
   }
 }

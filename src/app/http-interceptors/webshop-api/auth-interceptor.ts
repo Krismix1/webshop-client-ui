@@ -11,9 +11,9 @@ const TOKEN_HEADER_KEY = 'Authorization'
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private tokenStorageService: TokenStorageService, private router: Router) { }
+  constructor (private tokenStorageService: TokenStorageService, private router: Router) { }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept (req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if ((req.url.toLowerCase().includes('oauth/token') && req.method.toLowerCase() === 'post')) {
     } else {
       const token = this.tokenStorageService.getToken()

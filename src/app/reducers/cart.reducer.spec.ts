@@ -32,7 +32,7 @@ describe('cart reducers', () => {
   it('2. should add new item', () => {
     const stateBefore = []
     const product: Product = products[0]
-    const cartItem: CartItem = { product: product, quantity: 1 }
+    const cartItem: CartItem = { product, quantity: 1 }
     deepFreeze(stateBefore)
 
     const stateAfter = cartReducer(undefined, {
@@ -45,7 +45,7 @@ describe('cart reducers', () => {
   it('3. should add 2 different items', () => {
     let stateBefore: CartState = { items: [], initialized: false }
     const product: Product = products[0]
-    const cartItem: CartItem = { product: product, quantity: 1 }
+    const cartItem: CartItem = { product, quantity: 1 }
     deepFreeze(stateBefore)
 
     let stateAfter = cartReducer(undefined, {
@@ -71,7 +71,7 @@ describe('cart reducers', () => {
   it('4. should add 2 similar items', () => {
     let stateBefore: CartState = { items: [], initialized: false }
     const product: Product = products[0]
-    const cartItem: CartItem = { product: product, quantity: 1 }
+    const cartItem: CartItem = { product, quantity: 1 }
     deepFreeze(stateBefore)
 
     let stateAfter = cartReducer(undefined, {
@@ -104,7 +104,7 @@ describe('cart reducers', () => {
   it('5. should add 2 similar and 1 different item', () => {
     let stateBefore: CartState = { items: [], initialized: false }
     const product: Product = products[0]
-    const cartItem: CartItem = { product: product, quantity: 1 }
+    const cartItem: CartItem = { product, quantity: 1 }
     deepFreeze(stateBefore)
 
     let stateAfter = cartReducer(undefined, {

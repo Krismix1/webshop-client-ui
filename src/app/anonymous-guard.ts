@@ -6,9 +6,9 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 @Injectable()
 export class AnonymousGuard implements CanActivate {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor (private authService: AuthService, private router: Router) { }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+  canActivate (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if (this.authService.isLoggedIn()) {
       this.router.navigate(['home'])
       return false

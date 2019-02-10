@@ -13,7 +13,7 @@ export class RouterLinkDirectiveStub {
   @Input() routerLink: any
   navigatedTo: any = null
 
-  onClick() {
+  onClick () {
     this.navigatedTo = this.routerLink
   }
 }

@@ -12,9 +12,9 @@ const TOKEN_TIMESTAMP_KEY = 'TOKEN_TIMESTAMP'
 @Injectable()
 export class TokenStorageService {
 
-  constructor() { }
+  constructor () { }
 
-  save(token: AccessToken) {
+  save (token: AccessToken) {
     localStorage.setItem(ACCESS_TOKEN_KEY, token.access_token)
     localStorage.setItem(REFRESH_TOKEN_KEY, token.refresh_token)
     localStorage.setItem(EXPIRES_KEY, token.expires_in.toString())
@@ -24,7 +24,7 @@ export class TokenStorageService {
     localStorage.setItem(TOKEN_TIMESTAMP_KEY, new Date().getTime().toString())
   }
 
-  clean() {
+  clean () {
     localStorage.removeItem(ACCESS_TOKEN_KEY)
     localStorage.removeItem(REFRESH_TOKEN_KEY)
     localStorage.removeItem(EXPIRES_KEY)
@@ -34,7 +34,7 @@ export class TokenStorageService {
     localStorage.removeItem(TOKEN_TIMESTAMP_KEY)
   }
 
-  getToken(): AccessToken {
+  getToken (): AccessToken {
     const token = new AccessToken()
     token.access_token = localStorage.getItem(ACCESS_TOKEN_KEY)
     token.refresh_token = localStorage.getItem(REFRESH_TOKEN_KEY)
@@ -51,7 +51,7 @@ export class TokenStorageService {
     return token as AccessToken
   }
 
-  getTimestamp(): Date {
+  getTimestamp (): Date {
     return new Date(parseInt(localStorage.getItem(TOKEN_TIMESTAMP_KEY), 10))
   }
 }

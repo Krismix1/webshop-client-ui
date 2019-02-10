@@ -2,53 +2,53 @@ import { Category } from './category'
 
 export class Product {
 
-  set id(id: number) {
+  set id (id: number) {
     this.id = id
   }
 
-  get id(): number {
+  get id (): number {
     return this.id
   }
 
-  set name(name: string) {
+  set name (name: string) {
     this.name = name
   }
 
-  get name(): string {
+  get name (): string {
     return this.name
   }
 
-  set price(price: number) {
+  set price (price: number) {
     this.price = price
   }
 
-  get price(): number {
+  get price (): number {
     return this.price
   }
 
   // Set the URL for the image of the product
-  set imageUri(url: string) {
+  set imageUri (url: string) {
     this.imageUri = url
   }
 
   // Return the URL of the image of the product
-  get imageUri(): string {
+  get imageUri (): string {
     return this.imageUri
   }
 
-  set shortDescription(description: string) {
+  set shortDescription (description: string) {
     this.shortDescription = description
   }
 
-  get shortDescription(): string {
+  get shortDescription (): string {
     return this.shortDescription
   }
 
-  set type(type: any) {
+  set type (type: any) {
     this.type = type
   }
 
-  get type(): any {
+  get type (): any {
     return this.type
   }
 }

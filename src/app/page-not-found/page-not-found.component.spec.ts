@@ -43,8 +43,8 @@ describe('PageNotFoundComponent', () => {
     const bannerDe: DebugElement = fixture.debugElement
     const header1De: DebugElement = bannerDe.query(By.css('h1'))
     // The nativeElement property unwraps the DebugElement and returns the platform-specific element object.
-    const h1_: HTMLElement = header1De.nativeElement
-    expect(h1_.textContent.toLowerCase()).toContain('could not find page')
+    const h1Native: HTMLElement = header1De.nativeElement
+    expect(h1Native.textContent.toLowerCase()).toContain('could not find page')
     // The DebugElement has other methods and properties that are useful in tests
     // Platforms: Browser, Server side render (render first on the server as part of a strategy to make the application launch faster)
     // The server-side renderer might not support the full HTML element API.

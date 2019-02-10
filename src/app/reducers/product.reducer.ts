@@ -5,7 +5,7 @@ import { tassign } from 'tassign'
 
 const INITIAL_STATE: ProductState = { products: [], visibleProducts: undefined }
 
-export function productReducer(state: ProductState = INITIAL_STATE, action: any) {
+export function productReducer (state: ProductState = INITIAL_STATE, action: any) {
   switch (action.type) {
     case CategoryActions.SET_PRODUCT_CATEGORY:
       const selectedCategory = action.payload.name

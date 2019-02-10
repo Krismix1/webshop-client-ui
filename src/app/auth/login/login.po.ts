@@ -4,22 +4,22 @@ import { Router } from '@angular/router'
 
 export class LoginPage {
   // getter properties wait to query the DOM until called.
-  get buttons()     { return this.queryAll<HTMLButtonElement>('button') }
-  get saveBtn()     { return this.buttons[0] }
-  get emailInput()   { return this.queryAll<HTMLInputElement>('input')[0] }
-  get passwordInput()   { return this.queryAll<HTMLInputElement>('input')[1] }
-  get form()        { return this.query<HTMLFormElement>('form') }
+  get buttons ()     { return this.queryAll<HTMLButtonElement>('button') }
+  get saveBtn ()     { return this.buttons[0] }
+  get emailInput ()   { return this.queryAll<HTMLInputElement>('input')[0] }
+  get passwordInput ()   { return this.queryAll<HTMLInputElement>('input')[1] }
+  get form ()        { return this.query<HTMLFormElement>('form') }
 
   createForm: jasmine.Spy
-  navigateSpy:  jasmine.Spy
-  onSubmitLogin:  jasmine.Spy
+  navigateSpy: jasmine.Spy
+  onSubmitLogin: jasmine.Spy
 
   fixture: ComponentFixture<LoginComponent>
 
-  constructor(fixture: ComponentFixture<LoginComponent>) {
+  constructor (fixture: ComponentFixture<LoginComponent>) {
     this.fixture = fixture
     // get the navigate spy from the injected router spy object
-    const routerSpy = <any> fixture.debugElement.injector.get(Router)
+    const routerSpy = fixture.debugElement.injector.get(Router) as any
     this.navigateSpy = routerSpy.navigate
 
     // spy on component's `gotoList()` method
@@ -29,11 +29,11 @@ export class LoginPage {
   }
 
   //// query helpers ////
-  private query<T>(selector: string): T {
+  private query<T> (selector: string): T {
     return this.fixture.nativeElement.querySelector(selector)
   }
 
-  private queryAll<T>(selector: string): T[] {
+  private queryAll<T> (selector: string): T[] {
     return this.fixture.nativeElement.querySelectorAll(selector)
   }
 }

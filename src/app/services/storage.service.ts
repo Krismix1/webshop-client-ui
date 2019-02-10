@@ -9,10 +9,10 @@ import { of } from 'rxjs'
 export class StorageService {
 
   static readonly USER_KEY = 'USER_KEY'
-  private _baseUrl = `${environment.clientService}/api`
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  private readonly BASE_URL = `${environment.clientService}/api`
+  constructor (private http: HttpClient, private authService: AuthService) { }
 
-  getCartItems() {
+  getCartItems () {
     if (this.authService.isLoggedIn()) {
       // FIXME: retrieve data based on username
       return of([])
@@ -23,7 +23,7 @@ export class StorageService {
         // request a new key
         // TODO: Don't use a GET request, because the handler creates new data
         // But get requests should be repeatable
-        this.http.get<any>(this._baseUrl + '/users/anonymous/key').subscribe(data => {
+        this.http.get<any>(this.BASE_URL + '/users/anonymous/key').subscribe(data => {
           localStorage.setItem(StorageService.USER_KEY, data.key)
         })
         // because key was not present
@@ -31,16 +31,16 @@ export class StorageService {
         return of([])
       } else {
         // retrieve items based on key
-        return this.http.get<CartItem[]>(this._baseUrl + `/cart/${storedItemsKey}/items`)
+        return this.http.get<CartItem[]>(this.BASE_URL + `/cart/${storedItemsKey}/items`)
       }
     }
   }
 
-  saveItems(items: CartItem[]) {
+  saveItems (items: CartItem[]) {
     const storedItemsKey = localStorage.getItem(StorageService.USER_KEY)
     if (!storedItemsKey) {
       const mappedItems = items.map(item => ({ quantity: item.quantity, product: item.product.id }))
-      return this.http.put(`${this._baseUrl}/cart/${storedItemsKey}`, { items: mappedItems })
+      return this.http.put(`${this.BASE_URL}/cart/${storedItemsKey}`, { items: mappedItems })
     } else {
       console.error('No key present. Can\'t save items')
       return of()

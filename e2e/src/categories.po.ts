@@ -1,15 +1,15 @@
 import { browser, $$, ElementArrayFinder } from 'protractor'
 
 export class CategoriesPage {
-  navigateTo() {
+  navigateTo () {
     return browser.get('/home')
   }
 
-  getCategories(): ElementArrayFinder {
+  getCategories (): ElementArrayFinder {
     return $$('.category')
   }
 
-  getCategoryByIndex(index: number) {
+  getCategoryByIndex (index: number) {
     return $$('.category').get(index)
   }
 }

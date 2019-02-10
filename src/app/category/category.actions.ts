@@ -6,35 +6,35 @@ import { Category } from './../entities/category'
 @Injectable()
 export class CategoryActions {
 
-  constructor(private ngRedux: NgRedux<IAppState>) { }
+  constructor (private ngRedux: NgRedux<IAppState>) { }
 
   static ADD_CATEGORY = 'ADD_CATEGORY'
   static SET_CATEGORIES = 'SET_CATEGORIES'
   static SET_PRODUCT_CATEGORY = 'SET_PRODUCT_CATEGORY'
   static TOGGLE_CATEGORY_LIST = 'TOGGLE_CATEGORY_LIST'
 
-  addCategory(category: Category): void {
+  addCategory (category: Category): void {
     this.ngRedux.dispatch({
       type: CategoryActions.ADD_CATEGORY,
       payload: category
     })
   }
 
-  setCategories(categories: Category[]): void {
+  setCategories (categories: Category[]): void {
     this.ngRedux.dispatch({
       type: CategoryActions.SET_CATEGORIES,
       payload: categories
     })
   }
 
-  setProductCategory(category: Category): void {
+  setProductCategory (category: Category): void {
     this.ngRedux.dispatch({
       type: CategoryActions.SET_PRODUCT_CATEGORY,
       payload: category
     })
   }
 
-  toggleCategoryList(): void {
+  toggleCategoryList (): void {
     this.ngRedux.dispatch({
       type: CategoryActions.TOGGLE_CATEGORY_LIST
     })

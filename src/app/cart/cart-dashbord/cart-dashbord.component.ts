@@ -14,9 +14,9 @@ export class CartDashbordComponent implements OnInit {
   private totalPrice = 0
   private totalQuantity = 0
 
-  constructor(private ngRedux: NgRedux<IAppState>) { }
+  constructor (private ngRedux: NgRedux<IAppState>) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.ngRedux.select(state => state.cart)
       .subscribe(cart => {
         this.items = cart.items

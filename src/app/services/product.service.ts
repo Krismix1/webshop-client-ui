@@ -7,14 +7,14 @@ import { environment } from './../../environments/environment'
 @Injectable()
 export class ProductService {
 
-  private _baseUrl = `${environment.managementService}/api/products`
-  constructor(private httpClient: HttpClient) { }
+  private readonly BASE_URL = `${environment.managementService}/api/products`
+  constructor (private httpClient: HttpClient) { }
 
-  fetchProducts() {
-    return this.httpClient.get<Product[]>(this._baseUrl)
+  fetchProducts () {
+    return this.httpClient.get<Product[]>(this.BASE_URL)
   }
 
-  getOne(id: number) {
-    return this.httpClient.get<Product>(`${this._baseUrl}/${id}`)
+  getOne (id: number) {
+    return this.httpClient.get<Product>(`${this.BASE_URL}/${id}`)
   }
 }

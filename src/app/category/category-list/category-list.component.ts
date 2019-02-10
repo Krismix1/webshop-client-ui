@@ -14,9 +14,9 @@ export class CategoryListComponent implements OnInit {
 
   categories: Category[]
 
-  constructor(private categoryService: CategoryService, private categoryActions: CategoryActions, private ngRedux: NgRedux<IAppState>) { }
+  constructor (private categoryService: CategoryService, private categoryActions: CategoryActions, private ngRedux: NgRedux<IAppState>) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.ngRedux.select(state => state.category)
       .subscribe(categoriesState => { this.categories = categoriesState.categories })
 
@@ -24,7 +24,7 @@ export class CategoryListComponent implements OnInit {
       .subscribe(categories => this.categoryActions.setCategories(categories))
   }
 
-  onCategoryClicked(category: Category) {
+  onCategoryClicked (category: Category) {
     this.categoryActions.setProductCategory(category)
   }
 }

@@ -15,29 +15,29 @@ export class CartActions {
   static SUCCESS_SAVE_CART_ITEMS = 'SUCCESS_SAVE_CART_ITEMS'
   static FAILED_SAVE_CART_ITEMS = 'FAILED_SAVE_CART_ITEMS'
 
-  constructor(private ngRedux: NgRedux<IAppState>) { }
+  constructor (private ngRedux: NgRedux<IAppState>) { }
 
-  addProduct(product: Product) {
+  addProduct (product: Product) {
     this.ngRedux.dispatch({
       type: CartActions.PUT_PRODUCT,
       payload: product
     })
   }
 
-  subtractProduct(product: Product) {
+  subtractProduct (product: Product) {
     this.ngRedux.dispatch({
       type: CartActions.SUBTRACT_PRODUCT,
       payload: product.id
     })
   }
 
-  getItems() {
+  getItems () {
     this.ngRedux.dispatch({
       type: CartActions.GET_ITEMS
     })
   }
 
-  saveItems(items: CartItem[]) {
+  saveItems (items: CartItem[]) {
     this.ngRedux.dispatch({
       type: CartActions.SAVE_CART_ITEMS,
       payload: items

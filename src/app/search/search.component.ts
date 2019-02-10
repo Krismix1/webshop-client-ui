@@ -11,9 +11,9 @@ import { IAppState } from './../store/store'
 export class SearchComponent implements OnInit {
 
   private products: Product[]
-  constructor(private ngRedux: NgRedux<IAppState>) { }
+  constructor (private ngRedux: NgRedux<IAppState>) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.ngRedux.select(state => state.product).subscribe(productState => this.products = productState.products)
   }
 

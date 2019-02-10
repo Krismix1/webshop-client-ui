@@ -15,18 +15,18 @@ export class LoginComponent implements OnInit {
   readonly STATUS_NETWORK_ERROR = 4
   readonly STATUS_CUSTOM_MESSAGE = 5
 
-  loginForm
+  loginForm: FormGroup
   status = 0
   hidePassword = true
-  message: String = ''
+  message = ''
 
-  constructor(private router: Router, private fb: FormBuilder, private authService: AuthService) { }
+  constructor (private router: Router, private fb: FormBuilder, private authService: AuthService) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.createForm()
   }
 
-  createForm() {
+  createForm () {
     this.loginForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     this.loginForm.statusChanges.subscribe(() => this.loginForm.isSubmitted = false)
   }
 
-  onSubmitLogin(form) {
+  onSubmitLogin (form: FormGroup) {
     // TODO: See about creating a specific class and add isSubmitted property
     form.isSubmitted = true
     if (!form.valid) {
@@ -45,12 +45,12 @@ export class LoginComponent implements OnInit {
     this.status = this.STATUS_SENDING_REQUEST
     this.authService.login(form.value.email, form.value.password)
       .subscribe({
-        next: val => {
+        next: () => {
           this.status = this.STATUS_SUCCESS_LOGIN
           this.router.navigate([this.authService.redirectUrl || 'home'])
         },
         error: msg => {
-          console.log({'debug': msg})
+          console.log({ debug: msg })
           this.status = this.STATUS_CUSTOM_MESSAGE
           this.message = msg
         }

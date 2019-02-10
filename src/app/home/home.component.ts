@@ -13,14 +13,14 @@ export class HomeComponent implements OnInit {
 
   displayCategoryList = true
 
-  constructor(private ngRedux: NgRedux<IAppState>, private categoryActions: CategoryActions) { }
+  constructor (private ngRedux: NgRedux<IAppState>, private categoryActions: CategoryActions) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.ngRedux.select(state => state.category)
       .subscribe(state => this.displayCategoryList = state.displayList)
   }
 
-  toggleList() {
+  toggleList () {
     this.categoryActions.toggleCategoryList()
   }
 }

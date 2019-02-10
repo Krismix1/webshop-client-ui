@@ -5,9 +5,10 @@
     "ng": "ng",
     "dev": "ng serve --configuration=dev",
     "build": "ng build --prod",
-    "test": "ng test -e qa --tags",
+    "ng-test": "ng test --tags",
+    "test": "node ./test.js",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e --port 9999"
   },
   "private": true,
   "dependencies": {

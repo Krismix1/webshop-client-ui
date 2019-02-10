@@ -14,10 +14,10 @@ export class NavbarComponent implements OnInit {
 
   private quantity = 0
 
-  constructor(private router: Router, private ngRedux: NgRedux<IAppState>,
-    private cartActions: CartActions, private authService: AuthService) { }
+  constructor (private router: Router, private ngRedux: NgRedux<IAppState>,
+               private cartActions: CartActions, private authService: AuthService) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.ngRedux.select(state => state.cart)
       .subscribe(cart => {
         if (cart.initialized) {

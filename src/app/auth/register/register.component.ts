@@ -7,9 +7,9 @@ import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/materi
 @Injectable()
 export class MismatchErrorStateMatcher implements ErrorStateMatcher {
 
-  constructor(private defaultMatcher: ErrorStateMatcher) { }
+  constructor (private defaultMatcher: ErrorStateMatcher) { }
 
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+  isErrorState (control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     // const isSubmitted = form && form.submitted;
     // return this.defaultMatcher.isErrorState(control, form)
     //  || (control && control.invalid && ((control.dirty && control.errors.mismatch) || isSubmitted));
@@ -29,13 +29,13 @@ export class RegisterComponent implements OnInit {
   hidePassword = true
   hideConfirmPassword = true
 
-  constructor(private fb: FormBuilder, private matcher: MismatchErrorStateMatcher) { }
+  constructor (private fb: FormBuilder, private matcher: MismatchErrorStateMatcher) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.createForm()
   }
 
-  createForm() {
+  createForm () {
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       passwords: this.fb.group({
@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm.statusChanges.subscribe(() => this.registerForm.isSubmitted = false)
   }
 
-  onSubmitRegister(form) {
+  onSubmitRegister (form) {
     // TODO: See about creating a specific class and add isSubmitted property
     form.isSubmitted = true
     if (form.valid) {
@@ -58,7 +58,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  matchValidator(control: AbstractControl): { [key: string]: any } | null {
+  matchValidator (control: AbstractControl): { [key: string]: any } | null {
     const password = control.get('password')
     const confirm = control.get('confirmPassword')
     if (!password || !confirm) { return null }

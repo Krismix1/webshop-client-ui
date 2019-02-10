@@ -21,26 +21,26 @@ export class ProductDetailsComponent implements OnInit {
   }
   product: Product = this.productSample
 
-  constructor(private activatedRoute: ActivatedRoute, private productService: ProductService,
-    private cartActions: CartActions) { }
+  constructor (private activatedRoute: ActivatedRoute, private productService: ProductService,
+               private cartActions: CartActions) { }
 
-  ngOnInit() {
+  ngOnInit () {
     // This way, each time the params in the URL change,
     // getBaby() will be executed
     // this is necessary because ngOnInit() is called only when the previous URL is not the same as the URL of component
     // solution from https://stackoverflow.com/a/38836773
-    this.activatedRoute.params.subscribe(param => {
+    this.activatedRoute.params.subscribe(() => {
       this.getProduct()
     })
   }
 
-  getProduct(): void {
+  getProduct (): void {
     const id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'), 10)
     this.productService.getOne(id)
       .subscribe(product => this.product = product)
   }
 
-  addToCart() {
+  addToCart () {
     if (this.product.id > 0) {
       this.cartActions.addProduct(this.product)
     } else {

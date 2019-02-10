@@ -4,7 +4,7 @@ import { tassign } from 'tassign'
 
 const INITIAL_STATE: CategoryState = { categories: [], currentCategory: undefined, displayList: true }
 
-export function categoryReducer(state: CategoryState = INITIAL_STATE, action: any) {
+export function categoryReducer (state: CategoryState = INITIAL_STATE, action: any) {
   switch (action.type) {
     case CategoryActions.ADD_CATEGORY:
       return tassign(state, { categories: [...state.categories, action.payload] })

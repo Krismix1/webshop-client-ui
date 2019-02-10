@@ -13,9 +13,9 @@ export class CategoryListItemComponent implements OnInit {
   @Input() category: Category
   isSelected = false
 
-  constructor(private ngRedux: NgRedux<IAppState>) { }
+  constructor (private ngRedux: NgRedux<IAppState>) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.ngRedux.select(state => state.category)
       .subscribe(categoriesState => {
         this.isSelected = categoriesState.currentCategory && this.category.name === categoriesState.currentCategory.name

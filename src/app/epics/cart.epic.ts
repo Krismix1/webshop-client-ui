@@ -9,7 +9,7 @@ import { mergeMap, map, catchError } from 'rxjs/operators'
 @Injectable()
 export class CartEpic {
 
-  constructor(private storageService: StorageService) { }
+  constructor (private storageService: StorageService) { }
 
   getItems = (action: ActionsObservable<any>) => {
     return action.ofType(CartActions.GET_ITEMS) // Listen for this action
@@ -19,12 +19,12 @@ export class CartEpic {
             .pipe(
               map(results => ({ // when web service responds with success, call this action with payload that came back from webservice
                 type: CartActions.RECEIVED_ITEMS,
-                payload: { results: results, initialized: true }
+                payload: { results, initialized: true }
               })),
               catchError(error => of({
                 // when web service responds with failure, call this action with payload that came back from webservice
                 type: CartActions.FAILED_RECEIVING_ITEMS,
-                payload: { error: error, initialized: true }
+                payload: { error, initialized: true }
               }))
             )
         })

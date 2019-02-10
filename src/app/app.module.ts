@@ -100,10 +100,10 @@ import { createStore, applyMiddleware } from 'redux'
 })
 export class AppModule {
 
-  constructor(private ngRedux: NgRedux<IAppState>,
-    private devTools: DevToolsExtension,
-    private ngReduxRouter: NgReduxRouter,
-    private cartEpic: CartEpic) {
+  constructor (private ngRedux: NgRedux<IAppState>,
+               devTools: DevToolsExtension,
+               ngReduxRouter: NgReduxRouter,
+               private cartEpic: CartEpic) {
 
     // Middleware
     // http://redux.js.org/docs/advanced/Middleware.html

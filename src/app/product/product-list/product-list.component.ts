@@ -14,17 +14,17 @@ export class ProductListComponent implements OnInit {
 
   products: Product[]
 
-  constructor(private ngRedux: NgRedux<IAppState>, private productActions: ProductActions,
-    private productService: ProductService) { }
+  constructor (private ngRedux: NgRedux<IAppState>, private productActions: ProductActions,
+               private productService: ProductService) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.ngRedux.select(state => state.product)
       .subscribe(categoryState => this.products = categoryState.visibleProducts)
     this.productService.fetchProducts()
       .subscribe(products => this.productActions.setProducts(products))
   }
 
-  receiveEvent(payload) {
+  receiveEvent (payload) {
     console.log(`Received event with payload ${payload}`)
   }
 }

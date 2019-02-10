@@ -12,16 +12,16 @@ export class CartDashbordItemComponent implements OnInit {
   @Input()
   private item: CartItem
 
-  constructor(private cartActions: CartActions) { }
+  constructor (private cartActions: CartActions) { }
 
-  ngOnInit() {
+  ngOnInit () {
   }
 
-  addItem() {
+  addItem () {
     this.cartActions.addProduct(this.item.product)
   }
 
-  removeItem() {
+  removeItem () {
     this.cartActions.subtractProduct(this.item.product)
   }
 }

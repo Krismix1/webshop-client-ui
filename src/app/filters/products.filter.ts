@@ -4,7 +4,7 @@ import { Product } from './../entities/product'
 @Pipe({ name: 'filterProducts' })
 @Injectable()
 export class FilterProducts implements PipeTransform {
-  transform(items: Product[], args: string): any {
+  transform (items: Product[], args: string): any {
     if (args && items.length > 0) {
       const itemsFound = items.filter(
         item => item.name && item.name.toLowerCase().includes(args.toLowerCase())

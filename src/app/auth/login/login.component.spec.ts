@@ -42,7 +42,7 @@ describe('LoginComponent', () => {
     mockRouter = TestBed.get(Router)
     fixture.detectChanges()
     page = new LoginPage(fixture)
-    mockRouter.navigate.and.callFake((value) => {
+    mockRouter.navigate.and.callFake((value: any) => {
       console.log(`Router navigate called with value: ${value}`)
     })
 
@@ -207,7 +207,6 @@ describe('LoginComponent', () => {
   it('17. Should display error if any validator fails, for pristine and invalid inputs after submit button clicked', () => {
     const inputs: NodeListOf<HTMLInputElement> = loginEl.querySelectorAll('input')
     const emailInput = inputs[0]
-    const passwordInput = inputs[1]
     // email
     emailInput.value = 'quick BROWN  fOx'
     emailInput.dispatchEvent(new Event('input'))
@@ -295,7 +294,7 @@ export const MouseButtonClickEvents = {
 }
 
 /** Simulate element click. Defaults to mouse left-button click event. */
-export function click(el: DebugElement | HTMLElement, eventObj: any = MouseButtonClickEvents.left): void {
+export function click (el: DebugElement | HTMLElement, eventObj: any = MouseButtonClickEvents.left): void {
   if (el instanceof HTMLElement) {
     el.click()
   } else {
