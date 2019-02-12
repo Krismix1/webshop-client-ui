@@ -14,7 +14,8 @@ getTestBed().initTestEnvironment(
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting()
 )
+declare const KARMA_CONTEXT_SPEC: any // This will be replaced by webpack
 // Then we find all the tests.
-const context = require.context('./', true, /\.spec\.ts$/)
+const context = require.context('./', true, KARMA_CONTEXT_SPEC)
 // And load the modules.
 context.keys().map(context)
