@@ -1,6 +1,7 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
+// TODO: https://stackoverflow.com/questions/40683673/how-to-execute-only-one-test-spec-with-angular-cli
 module.exports = function (config) {
   config.set({
     basePath: '',
