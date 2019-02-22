@@ -6,13 +6,13 @@
           <input matInput placeholder="Email" formControlName="email" required>
           <mat-error
             *ngIf="registerForm.controls.email.errors?.required &&
-              (registerForm.isSubmitted || registerForm.controls.email.dirty)">
+              (isSubmitted || registerForm.controls.email.dirty)">
             Email is <strong>required</strong>
           </mat-error>
           <mat-error
             *ngIf="!registerForm.controls.email.errors?.required &&
               registerForm.controls.email.errors?.email &&
-              (registerForm.isSubmitted || registerForm.controls.email.dirty)">
+              (isSubmitted || registerForm.controls.email.dirty)">
             Not valid <strong>email</strong>
           </mat-error>
         </mat-form-field>
@@ -33,7 +33,7 @@
             <mat-hint align="end" *ngIf="passwordInput.value?.length < 4">{{passwordInput.value?.length || 0}}/4</mat-hint>
             <mat-error
               *ngIf="registerForm.controls.passwords.controls.password.errors?.required &&
-                (registerForm.isSubmitted || registerForm.controls.passwords.controls.password.dirty)">
+                (isSubmitted || registerForm.controls.passwords.controls.password.dirty)">
               Password is <strong>required</strong>
             </mat-error>
           </mat-form-field>
@@ -51,13 +51,13 @@
             <mat-icon matTooltip="Show/hide password" matTooltipPosition="right" matSuffix (click)="hideConfirmPassword = !hideConfirmPassword">{{!hideConfirmPassword ? 'visibility' : 'visibility_off'}}</mat-icon>
             <mat-error
               *ngIf="registerForm.controls.passwords.controls.confirmPassword.errors?.required &&
-                (registerForm.isSubmitted || registerForm.controls.passwords.controls.confirmPassword.dirty)">
+                (isSubmitted || registerForm.controls.passwords.controls.confirmPassword.dirty)">
               Confirmation password is <strong>required</strong>
             </mat-error>
             <mat-error
               *ngIf="registerForm.controls.passwords.errors?.mismatch &&
                 !registerForm.controls.passwords.controls.confirmPassword.errors?.required &&
-                (registerForm.controls.passwords.controls.confirmPassword.dirty || registerForm.isSubmitted)">
+                (registerForm.controls.passwords.controls.confirmPassword.dirty || isSubmitted)">
               Passwords must <strong>match</strong>
             </mat-error>
           </mat-form-field>

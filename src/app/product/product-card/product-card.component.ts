@@ -31,7 +31,7 @@ export class ProductCardComponent implements OnInit {
     this.descriptionClicked.emit(this.product.shortDescription)
   }
 
-  receiveEvent (data) {
+  receiveEvent (data: any) {
     console.log(`Loooooooooool`)
   }
 }

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MaterialModule } from './material.module'
-import { NgRedux, NgReduxModule, DevToolsExtension } from '@angular-redux/store'
+import { NgRedux, NgReduxModule } from '@angular-redux/store'
 import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router'
 import { HttpClientModule } from '@angular/common/http'
 import { AngularFontAwesomeModule } from 'angular-font-awesome'
@@ -51,8 +51,6 @@ import { FAQComponent } from './info/faq/faq.component'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 // search
 import { FilterProducts } from './filters/products.filter'
-// environment
-import { environment } from './../environments/environment'
 // errors
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material'
 import { MismatchErrorStateMatcher } from './auth/register/register.component'
@@ -101,7 +99,6 @@ import { createStore, applyMiddleware } from 'redux'
 export class AppModule {
 
   constructor (private ngRedux: NgRedux<IAppState>,
-               devTools: DevToolsExtension,
                ngReduxRouter: NgReduxRouter,
                private cartEpic: CartEpic) {
 
@@ -109,23 +106,18 @@ export class AppModule {
     // http://redux.js.org/docs/advanced/Middleware.html
     // https://github.com/angular-redux/store/blob/master/articles/epics.md
     const epicMiddleware = createEpicMiddleware()
-    const store = createStore(rootReducer, applyMiddleware(epicMiddleware))
+    const enhancers = [
+      epicMiddleware,
+      createLogger({ level: 'info', collapsed: true })
+    ]
+    const store = createStore(rootReducer, applyMiddleware(...enhancers))
 
     const rootEpic = combineEpics(
       this.cartEpic.getItems, this.cartEpic.saveItems
     )
     epicMiddleware.run(rootEpic)
-    const middleware = [
-      epicMiddleware, createLogger({ level: 'info', collapsed: true })
-    ]
 
-    let enhancers = []
-    // ... add whatever other enhancers are needed.
-    // You probably only want to expose this tool in devMode.
-    if (environment.dev && devTools.isEnabled()) {
-      enhancers = [...enhancers, devTools.enhancer()]
-    }
-    const initialState = {}
+    // const initialState = {}
     // this.ngRedux.configureStore(rootReducer, initialState, middleware, enhancers)
     this.ngRedux.provideStore(store)
 

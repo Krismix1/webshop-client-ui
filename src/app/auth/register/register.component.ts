@@ -1,6 +1,6 @@
 import { Component, OnInit, Injectable } from '@angular/core'
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl, FormGroupDirective, NgForm } from '@angular/forms'
-import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core'
+import { ErrorStateMatcher } from '@angular/material/core'
 
 /** Error when invalid control is dirty, or mismatched. or submitted. */
 // From: https://github.com/angular/material2/issues/8513
@@ -10,11 +10,8 @@ export class MismatchErrorStateMatcher implements ErrorStateMatcher {
   constructor (private defaultMatcher: ErrorStateMatcher) { }
 
   isErrorState (control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    // const isSubmitted = form && form.submitted;
-    // return this.defaultMatcher.isErrorState(control, form)
-    //  || (control && control.invalid && ((control.dirty && control.errors.mismatch) || isSubmitted));
-    const invalidParent = control && control.dirty && control.parent.invalid
-    return this.defaultMatcher.isErrorState(control, form) || invalidParent
+    const invalidParent = control !== null && control.dirty && control.parent.invalid
+    return (this.defaultMatcher.isErrorState(control, form) || invalidParent)
   }
 }
 
@@ -25,11 +22,12 @@ export class MismatchErrorStateMatcher implements ErrorStateMatcher {
 })
 export class RegisterComponent implements OnInit {
 
-  registerForm
+  registerForm: FormGroup
   hidePassword = true
   hideConfirmPassword = true
+  isSubmitted = false
 
-  constructor (private fb: FormBuilder, private matcher: MismatchErrorStateMatcher) { }
+  constructor (private fb: FormBuilder) { }
 
   ngOnInit () {
     this.createForm()
@@ -43,12 +41,12 @@ export class RegisterComponent implements OnInit {
         confirmPassword: ['', Validators.required]
       }, { validator: this.matchValidator })
     })
-    this.registerForm.statusChanges.subscribe(() => this.registerForm.isSubmitted = false)
+    this.registerForm.statusChanges.subscribe(() => this.isSubmitted = false)
   }
 
-  onSubmitRegister (form) {
+  onSubmitRegister (form: FormGroup) {
     // TODO: See about creating a specific class and add isSubmitted property
-    form.isSubmitted = true
+    this.isSubmitted = true
     if (form.valid) {
       console.log('valid form', form)
       // TODO: send request

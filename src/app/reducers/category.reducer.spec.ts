@@ -8,7 +8,7 @@ describe('category reducers', () => {
   it('1. Should return the initial state', () => {
     expect(categoryReducer(undefined, {})).toEqual({
       categories: [],
-      currentCategory: undefined,
+      currentCategory: null,
       displayList: true
     })
   })
@@ -16,7 +16,7 @@ describe('category reducers', () => {
   it('2. Should add category', () => {
     const stateBefore = {
       categories: [],
-      currentCategory: undefined,
+      currentCategory: null,
       displayList: true
     }
     const category = {
@@ -24,7 +24,7 @@ describe('category reducers', () => {
     }
     const stateAfter = {
       categories: [category],
-      currentCategory: undefined,
+      currentCategory: null,
       displayList: true
     }
     deepFreeze(stateBefore)
@@ -37,7 +37,7 @@ describe('category reducers', () => {
   it('3. Should add 2 categories in row', () => {
     let stateBefore = {
       categories: [],
-      currentCategory: undefined,
+      currentCategory: null,
       displayList: true
     }
     const cat1 = { name: 'unit_test_category_1' }
@@ -51,7 +51,7 @@ describe('category reducers', () => {
 
     expect(stateAfter).toEqual({
       categories: [cat1],
-      currentCategory: undefined,
+      currentCategory: null,
       displayList: true
     })
 
@@ -63,7 +63,7 @@ describe('category reducers', () => {
       payload: cat2
     })).toEqual({
       categories: [cat1, cat2],
-      currentCategory: undefined,
+      currentCategory: null,
       displayList: true
     })
   })

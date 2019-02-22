@@ -6,6 +6,7 @@ describe('webshop-client App', () => {
   let categoriesPage: CategoriesPage
 
   beforeEach(() => {
+    browser.waitForAngularEnabled(true)
     categoriesPage = new CategoriesPage()
   })
 

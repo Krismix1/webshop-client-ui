@@ -15,6 +15,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit () {
     this.ngRedux.select(state => state.product).subscribe(productState => this.products = productState.products)
+    console.log('Filter products', this.products.length)
   }
 
 }

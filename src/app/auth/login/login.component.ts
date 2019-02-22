@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   status = 0
   hidePassword = true
   message = ''
+  isSubmitted = false
 
   constructor (private router: Router, private fb: FormBuilder, private authService: AuthService) { }
 
@@ -31,12 +32,12 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required]
     })
-    this.loginForm.statusChanges.subscribe(() => this.loginForm.isSubmitted = false)
+    this.loginForm.statusChanges.subscribe(() => this.isSubmitted = false)
   }
 
   onSubmitLogin (form: FormGroup) {
     // TODO: See about creating a specific class and add isSubmitted property
-    form.isSubmitted = true
+    this.isSubmitted = true
     if (!form.valid) {
       this.status = this.STATUS_INVALID_FORM
       return

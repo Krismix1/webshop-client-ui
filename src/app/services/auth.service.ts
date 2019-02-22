@@ -12,7 +12,6 @@ export class AuthService {
 
   redirectUrl: string
   private readonly BASE_URL = `${environment.authService}`
-  private user: Account
 
   constructor (private httpClient: HttpClient, private tokenStorage: TokenStorageService) { }
 
@@ -47,15 +46,11 @@ export class AuthService {
     })
     .pipe(
       shareReplay(),
-      map(result => {
+      map(async (result) => {
         if (result && result.access_token) {
           this.tokenStorage.save(result)
           // Create a new request to retrieve the roles of the user
-          this.httpClient.get<Account>(`${this.BASE_URL}/user`).
-            subscribe(res => {
-              this.user = res
-            })
-          return true
+          return await this.httpClient.get<Account>(`${this.BASE_URL}/user`)
         } else {
           console.log({ debug: result })
           return throwError('No access token received.')

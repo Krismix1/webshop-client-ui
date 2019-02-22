@@ -83,18 +83,18 @@ describe('LoginComponent', () => {
 
   it('6. Should mark form as submitted no matter of form state', () => {
     // the isSubmitted property is added in onSubmitLogin
-    expect(component.loginForm.isSubmitted).toBeFalsy('Initialy form should not have isSubmitted property')
+    expect(component.isSubmitted).toBe(false, 'Initialy isSubmitted should be false')
     component.onSubmitLogin(component.loginForm)
-    expect(component.loginForm.isSubmitted).toBe(true, 'Form should change isSubmitted to true')
+    expect(component.isSubmitted).toBe(true, 'Should change isSubmitted to true')
   })
 
   it('7. Should mark form as submitted no matter of form state', () => {
     component.onSubmitLogin(component.loginForm)
     component.loginForm.controls.password.setValue('')
-    expect(component.loginForm.isSubmitted).toBe(false, 'Form should change isSubmitted to false after input touch')
+    expect(component.isSubmitted).toBe(false, 'isSubmitted should change to false after input touch')
     component.onSubmitLogin(component.loginForm)
     component.loginForm.controls.password.setValue('aa')
-    expect(component.loginForm.isSubmitted).toBe(false, 'Form should change isSubmitted to false after input changes')
+    expect(component.isSubmitted).toBe(false, 'isSubmitted should change to false after input changes')
   })
 
   it('8. Should change status to invalid and not call service when form is invalid', () => {

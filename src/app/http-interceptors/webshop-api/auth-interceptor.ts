@@ -3,7 +3,6 @@ import {
   HttpInterceptor, HttpRequest, HttpHandler, HttpEvent,
 } from '@angular/common/http'
 import { Observable } from 'rxjs'
-import { Router } from '@angular/router'
 import { TokenStorageService } from './../../auth/token-storage.service'
 
 const TOKEN_HEADER_KEY = 'Authorization'
@@ -11,7 +10,7 @@ const TOKEN_HEADER_KEY = 'Authorization'
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor (private tokenStorageService: TokenStorageService, private router: Router) { }
+  constructor (private tokenStorageService: TokenStorageService) { }
 
   intercept (req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if ((req.url.toLowerCase().includes('oauth/token') && req.method.toLowerCase() === 'post')) {

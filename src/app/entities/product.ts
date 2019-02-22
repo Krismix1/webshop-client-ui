@@ -1,5 +1,3 @@
-import { Category } from './category'
-
 export class Product {
 
   set id (id: number) {

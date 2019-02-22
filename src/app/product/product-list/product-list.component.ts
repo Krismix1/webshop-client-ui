@@ -23,8 +23,4 @@ export class ProductListComponent implements OnInit {
     this.productService.fetchProducts()
       .subscribe(products => this.productActions.setProducts(products))
   }
-
-  receiveEvent (payload) {
-    console.log(`Received event with payload ${payload}`)
-  }
 }

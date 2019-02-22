@@ -3,7 +3,7 @@ import { CategoryActions } from './../category/category.actions'
 import { ProductState } from './../store/store'
 import { tassign } from 'tassign'
 
-const INITIAL_STATE: ProductState = { products: [], visibleProducts: undefined }
+const INITIAL_STATE: ProductState = { products: [], visibleProducts: [] }
 
 export function productReducer (state: ProductState = INITIAL_STATE, action: any) {
   switch (action.type) {

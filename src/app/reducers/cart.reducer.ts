@@ -11,7 +11,7 @@ export function cartReducer (state: CartState = INITIAL_STATE, action: any) {
       // search the current state of the cart
       // if the item already exists, then add 1 to the quantity
       // else, add a new item with a quantity of 1
-      let itemIndex = state.items.map(item => item.product.name).indexOf(action.payload.name)
+      let itemIndex = state.items.findIndex(item => item.product.name === action.payload.name)
       if (itemIndex >= 0) {
         const foundItem: CartItem = state.items[itemIndex]
         const quantity = foundItem.quantity

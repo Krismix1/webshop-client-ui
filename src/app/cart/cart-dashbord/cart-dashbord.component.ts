@@ -11,8 +11,10 @@ import { CartItem } from './../../entities/cart-item'
 export class CartDashbordComponent implements OnInit {
 
   private items: CartItem[] = []
-  private totalPrice = 0
-  private totalQuantity = 0
+  // tslint:disable-next-line
+  totalPrice = 0
+  // tslint:disable-next-line:no-unused-variable
+  totalQuantity = 0
 
   constructor (private ngRedux: NgRedux<IAppState>) { }
 

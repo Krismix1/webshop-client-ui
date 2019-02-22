@@ -12,7 +12,7 @@ import { CartActions } from './../../cart/cart.actions'
 export class ProductDetailsComponent implements OnInit {
 
   readonly productSample: Product = {
-    id: null,
+    id: 0,
     name: '',
     type: { name: '' },
     price: 0,
@@ -35,7 +35,10 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   getProduct (): void {
-    const id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'), 10)
+    const id = parseInt(this.activatedRoute.snapshot.paramMap.get('id') || '', 10)
+    if (!id) {
+      console.error('Could not read ID from route')
+    }
     this.productService.getOne(id)
       .subscribe(product => this.product = product)
   }

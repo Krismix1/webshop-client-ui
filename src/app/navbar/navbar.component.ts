@@ -12,7 +12,7 @@ import { AuthService } from './../services/auth.service'
 })
 export class NavbarComponent implements OnInit {
 
-  private quantity = 0
+  quantity = 0
 
   constructor (private router: Router, private ngRedux: NgRedux<IAppState>,
                private cartActions: CartActions, private authService: AuthService) { }

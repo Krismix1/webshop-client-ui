@@ -34,14 +34,14 @@ export class TokenStorageService {
     localStorage.removeItem(TOKEN_TIMESTAMP_KEY)
   }
 
-  getToken (): AccessToken {
+  getToken (): AccessToken | null {
     const token = new AccessToken()
-    token.access_token = localStorage.getItem(ACCESS_TOKEN_KEY)
-    token.refresh_token = localStorage.getItem(REFRESH_TOKEN_KEY)
-    token.expires_in = parseInt(localStorage.getItem(EXPIRES_KEY), 10)
-    token.scope = localStorage.getItem(SCOPE_KEY)
-    token.token_type = localStorage.getItem(TOKEN_TYPE_KEY)
-    token.jti = localStorage.getItem(JTI_KEY)
+    token.access_token = localStorage.getItem(ACCESS_TOKEN_KEY) as string
+    token.refresh_token = localStorage.getItem(REFRESH_TOKEN_KEY) as string
+    token.expires_in = parseInt(localStorage.getItem(EXPIRES_KEY) as string, 10)
+    token.scope = localStorage.getItem(SCOPE_KEY) as string
+    token.token_type = localStorage.getItem(TOKEN_TYPE_KEY) as string
+    token.jti = localStorage.getItem(JTI_KEY) as string
     if (!(token.access_token && token.refresh_token && token.expires_in
           && token.scope)) {
       // jti and token_type should not matter for determining
@@ -52,6 +52,6 @@ export class TokenStorageService {
   }
 
   getTimestamp (): Date {
-    return new Date(parseInt(localStorage.getItem(TOKEN_TIMESTAMP_KEY), 10))
+    return new Date(parseInt(localStorage.getItem(TOKEN_TIMESTAMP_KEY) as string, 10))
   }
 }

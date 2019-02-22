@@ -40,7 +40,7 @@ describe('AuthService', () => {
   let tokenStorageServiceSpy: jasmine.SpyObj<TokenStorageService>
 
   let httpTestingController: HttpTestingController
-  let _baseUrl: String // tslint:disable-line
+  let _baseUrl: string // tslint:disable-line:variable-name
   let mockRouter: jasmine.SpyObj<Router>
 
   beforeEach(() => {
@@ -130,6 +130,10 @@ describe('AuthService', () => {
   })
 
   it('6. Should login', async(() => {
+    const mockAccount = {
+      username: 'Test user',
+      authorities: ['Test authority 1', 'Test authority 2']
+    } as Account
     // TODO: More on https://angular.io/guide/http#testing-http-requests : Testing for errors
     let stubValue: AccessToken
     tokenStorageServiceSpy.save.and.callFake((value: AccessToken) => {
@@ -141,7 +145,7 @@ describe('AuthService', () => {
     authService.login('test username', 'test password')
       .subscribe(data => {
         // Assert that correct data was returned.
-        expect(data).toBe(true, 'Return value of login() should be true')
+        expect(data).toEqual(mockAccount, 'Return value of login() should be the user account')
 
         expect(authService.isLoggedIn()).toBe(true, 'After login(), isLoggedIn() should be true')
         expect(tokenStorageServiceSpy.getToken.calls.count() - 1) // subtract 1 because it is called in auth interceptor
@@ -185,10 +189,7 @@ describe('AuthService', () => {
     expect(userReq.request.headers.get('Authorization')).toEqual(`Bearer ${testData.access_token}`)
 
     // Respond with mock data, causing Observable to resolve.
-    userReq.flush({
-      username: 'Test user',
-      authorities: ['Test authority 1', 'Test authority 2']
-    } as Account)
+    userReq.flush(mockAccount)
 
     // Finally, assert that there are no outstanding requests.
     httpTestingController.verify()
@@ -220,10 +221,7 @@ describe('AuthService', () => {
     // next line is needed so that httpTestingController.verify() doesn't fail
     const userReq = httpTestingController.expectOne(`${_baseUrl}/user`)
     // Respond with mock data, so that the request doesn't fails.
-    userReq.flush({
-      username: 'Test user',
-      authorities: ['Test authority 1', 'Test authority 2']
-    } as Account)
+    userReq.flush({})
 
     // Assert that there are no outstanding requests.
     httpTestingController.verify()
